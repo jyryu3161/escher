@@ -791,31 +791,143 @@ export default class Behavior {
   }
 
   getReactionLabelDrag (map) {
+    const behavior = d3Drag()
+    const undoStack = this.undoStack
+    const rel = this.map.sel.node()
+    const setDragging = onOff => { this.dragging = onOff }
+
     const moveLabel = (reactionId, displacement) => {
       const reaction = map.reactions[reactionId]
       reaction.label_x = reaction.label_x + displacement.x
       reaction.label_y = reaction.label_y + displacement.y
     }
-    const startFn = d => {
+    const moveTextLabel = (textLabelId, displacement) => {
+      const textLabel = map.text_labels[textLabelId]
+      textLabel.x = textLabel.x + displacement.x
+      textLabel.y = textLabel.y + displacement.y
+    }
+
+    let totalDisplacement = null
+    let selectedNodeIds = null
+    let selectedTextLabelIds = null
+
+    behavior.on('start', d => {
+      setDragging(true)
+      d3Selection.event.sourceEvent.stopPropagation()
       // hide tooltips when drag starts
       map.callback_manager.run('hide_tooltip')
-    }
-    const dragFn = (d, displacement, totalDisplacement) => {
-      // draw
+      // capture selected elements at drag start
+      totalDisplacement = { x: 0, y: 0 }
+      selectedNodeIds = map.get_selected_node_ids()
+      selectedTextLabelIds = map.get_selected_text_label_ids()
+    })
+
+    behavior.on('drag', d => {
+      const displacement = {
+        x: d3Selection.event.dx,
+        y: d3Selection.event.dy
+      }
+      totalDisplacement = utils.c_plus_c(totalDisplacement, displacement)
+
+      // Always move the reaction label
       moveLabel(d.reaction_id, displacement)
-      map.draw_these_reactions([ d.reaction_id ])
-    }
-    const endFn = () => {}
-    const undoFn = (d, displacement) => {
-      moveLabel(d.reaction_id, utils.c_times_scalar(displacement, -1))
-      map.draw_these_reactions([ d.reaction_id ])
-    }
-    const redoFn = (d, displacement) => {
-      moveLabel(d.reaction_id, displacement)
-      map.draw_these_reactions([ d.reaction_id ])
-    }
-    return this.getGenericDrag(startFn, dragFn, endFn, undoFn, redoFn,
-                               this.map.sel)
+      let reactionIds = [d.reaction_id]
+
+      // If there are selected nodes, move them too
+      if (selectedNodeIds && selectedNodeIds.length > 0) {
+        selectedNodeIds.forEach(nodeId => {
+          const node = map.nodes[nodeId]
+          const updated = build.moveNodeAndDependents(node, nodeId, map.reactions,
+                                                      map.beziers, displacement)
+          reactionIds = utils.uniqueConcat([reactionIds, updated.reaction_ids])
+        })
+        map.draw_these_nodes(selectedNodeIds)
+      }
+
+      // If there are selected text labels, move them too
+      if (selectedTextLabelIds && selectedTextLabelIds.length > 0) {
+        selectedTextLabelIds.forEach(textLabelId => {
+          moveTextLabel(textLabelId, displacement)
+        })
+        map.draw_these_text_labels(selectedTextLabelIds)
+      }
+
+      map.draw_these_reactions(reactionIds)
+    })
+
+    behavior.on('end', d => {
+      setDragging(false)
+
+      // If no actual drag occurred (just a click), don't add to undo stack
+      if (!totalDisplacement || (totalDisplacement.x === 0 && totalDisplacement.y === 0)) {
+        totalDisplacement = null
+        selectedNodeIds = null
+        selectedTextLabelIds = null
+        return
+      }
+
+      // Capture all state for undo/redo in closure
+      const savedReactionId = d.reaction_id
+      const savedDisplacement = utils.clone(totalDisplacement)
+      const savedNodeIds = selectedNodeIds ? selectedNodeIds.slice() : []
+      const savedTextLabelIds = selectedTextLabelIds ? selectedTextLabelIds.slice() : []
+
+      undoStack.push(() => {
+        // undo
+        const inverseDisplacement = utils.c_times_scalar(savedDisplacement, -1)
+        moveLabel(savedReactionId, inverseDisplacement)
+        let undoReactionIds = [savedReactionId]
+
+        if (savedNodeIds.length > 0) {
+          savedNodeIds.forEach(nodeId => {
+            const node = map.nodes[nodeId]
+            const updated = build.moveNodeAndDependents(node, nodeId, map.reactions,
+                                                        map.beziers, inverseDisplacement)
+            undoReactionIds = utils.uniqueConcat([undoReactionIds, updated.reaction_ids])
+          })
+          map.draw_these_nodes(savedNodeIds)
+        }
+
+        if (savedTextLabelIds.length > 0) {
+          savedTextLabelIds.forEach(textLabelId => {
+            moveTextLabel(textLabelId, inverseDisplacement)
+          })
+          map.draw_these_text_labels(savedTextLabelIds)
+        }
+
+        map.draw_these_reactions(undoReactionIds)
+      }, () => {
+        // redo
+        moveLabel(savedReactionId, savedDisplacement)
+        let redoReactionIds = [savedReactionId]
+
+        if (savedNodeIds.length > 0) {
+          savedNodeIds.forEach(nodeId => {
+            const node = map.nodes[nodeId]
+            const updated = build.moveNodeAndDependents(node, nodeId, map.reactions,
+                                                        map.beziers, savedDisplacement)
+            redoReactionIds = utils.uniqueConcat([redoReactionIds, updated.reaction_ids])
+          })
+          map.draw_these_nodes(savedNodeIds)
+        }
+
+        if (savedTextLabelIds.length > 0) {
+          savedTextLabelIds.forEach(textLabelId => {
+            moveTextLabel(textLabelId, savedDisplacement)
+          })
+          map.draw_these_text_labels(savedTextLabelIds)
+        }
+
+        map.draw_these_reactions(redoReactionIds)
+      })
+
+      // Clear state
+      totalDisplacement = null
+      selectedNodeIds = null
+      selectedTextLabelIds = null
+    })
+
+    return behavior
   }
 
   getNodeLabelDrag (map) {
