@@ -140,11 +140,13 @@ module.exports = function(container, config) {
             e.preventDefault();
             e.stopPropagation();
             var clickedIndex = rows.indexOf(this);
-            if (clickedIndex !== -1) {
+            if (clickedIndex !== -1 && this.id) {
                 ix = clickedIndex;
                 p.highlight(clickedIndex);
                 selectedReactionId = this.id;
                 addButton.style.visibility = 'visible';
+                txtInput.value = this.__hint || '';
+                txtHint.value = this.__hint || '';
             }
         }
 
