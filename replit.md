@@ -35,6 +35,11 @@ Escher is a web application for building, sharing, and embedding data-rich visua
 - Webpack for bundling
 
 ## Recent Changes
+- December 18, 2025: UX Improvement - Multi-selection drag for reaction labels
+  - When dragging a reaction label, all selected nodes and text labels now move together
+  - Undo/redo properly restores all moved elements
+  - Files modified: Behavior.js (getReactionLabelDrag)
+
 - December 18, 2025: UX Improvement - Single-click reaction selection
   - Reaction dropdown now supports single-click to select and add reactions (previously required double-click)
   - Shift+click on dropdown items preserves Build mode for continuous additions
