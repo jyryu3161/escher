@@ -117,9 +117,10 @@ module.exports = function(container, config) {
 
         var onMouseOver =  function() { this.style.outline = '1px solid #ddd'; }
         var onMouseOut =   function() { this.style.outline = '0'; }
-        var onDblClick =  function(e) {
+        var onClick = function(e) {
             e.preventDefault();
-            p.onmouseselection(this.id);
+            e.stopPropagation();
+            p.onmouseselection(this.id, e);
         }
 
         var p = {
@@ -145,9 +146,9 @@ module.exports = function(container, config) {
                     divRow.style.color = config.color;
                     divRow.onmouseover = onMouseOver;
                     divRow.onmouseout =  onMouseOut;
-                    // prevent selection for double click
+                    // prevent text selection and input blur on click
                     divRow.onmousedown = function(e) { e.preventDefault(); };
-                    divRow.ondblclick = onDblClick;
+                    divRow.onclick = onClick;
                     divRow.__hint = found[0];
                     divRow.id = options[i].id;
                     divRow.innerHTML = options[i].html;
@@ -203,7 +204,7 @@ module.exports = function(container, config) {
                 p.highlight(ix);
                 return rows[ix].__hint;
             },
-            onmouseselection : function() {},
+            onmouseselection : function(id, event) {},
             get_current_row: function () {
                 return current_row;
             }
@@ -213,8 +214,8 @@ module.exports = function(container, config) {
 
     var dropDownController = createDropDownController(dropDown);
 
-    dropDownController.onmouseselection = function(id) {
-        rs.onEnter(id)
+    dropDownController.onmouseselection = function(id, event) {
+        rs.onEnter(id, event)
         rs.input.focus();
     }
 
