@@ -35,6 +35,12 @@ Escher is a web application for building, sharing, and embedding data-rich visua
 - Webpack for bundling
 
 ## Recent Changes
+- December 18, 2025: UX Improvement - Auto-switch to Select mode
+  - Add Reaction mode: After adding a reaction, automatically switches to Select (brush) mode
+  - Text mode: After adding a new text label, automatically switches to Select mode
+  - Hold Shift key while adding to stay in the current mode for continuous additions
+  - Files modified: BuildInput.js, TextEditInput.js, Behavior.js, Builder.jsx, completely.js
+
 - December 18, 2025: Initial Replit setup
   - Configured webpack-dev-server for port 5000 with host 0.0.0.0
   - Added disableHostCheck for proxy compatibility
