@@ -35,6 +35,11 @@ Escher is a web application for building, sharing, and embedding data-rich visua
 - Webpack for bundling
 
 ## Recent Changes
+- December 18, 2025: UX Improvement - Single-click reaction selection
+  - Reaction dropdown now supports single-click to select and add reactions (previously required double-click)
+  - Shift+click on dropdown items preserves Build mode for continuous additions
+  - Files modified: completely.js
+
 - December 18, 2025: UX Improvement - Auto-switch to Select mode
   - Add Reaction mode: After adding a reaction, automatically switches to Select (brush) mode
   - Text mode: After adding a new text label, automatically switches to Select mode
