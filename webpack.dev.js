@@ -9,7 +9,9 @@ module.exports = merge.smart(common, {
   },
   devServer: {
     contentBase: './dev-server',
-    open: true,
-    port: 7621
+    open: false,
+    port: 5000,
+    host: '0.0.0.0',
+    disableHostCheck: true
   }
 })

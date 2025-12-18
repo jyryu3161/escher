@@ -1,0 +1,40 @@
+modules = ["python-3.12", "web", "bash", "nodejs-18"]
+[agent]
+expertMode = true
+
+[nix]
+channel = "stable-25_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Escher Dev Server"
+
+[[workflows.workflow]]
+name = "Escher Dev Server"
+author = "agent"
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "NODE_OPTIONS=--openssl-legacy-provider npm start"
+waitForPort = 5000
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[deployment]
+deploymentTarget = "static"
+run = ["npx", "serve"]
+build = ["bash", "-c", "NODE_OPTIONS=--openssl-legacy-provider npx webpack --config webpack.dev.js --mode production --output-path dev-server"]
+publicDir = "dev-server"
