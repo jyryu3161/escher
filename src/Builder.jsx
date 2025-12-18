@@ -407,6 +407,11 @@ class Builder {
     this.text_edit_input = new TextEditInput(this.mapToolsContainer, this.map,
                                              this.zoom_container)
 
+    // Set up callback for auto-switching to brush mode after adding reaction/text
+    this.map.callback_manager.set('switch_to_brush_mode', () => {
+      this._setMode('brush')
+    })
+
     // Set up the Brush
     this.brush = new Brush(zoomedSel, false, this.map, '.canvas-group')
     // reset brush when canvas resizes in brush mode

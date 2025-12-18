@@ -271,7 +271,8 @@ export default class Behavior {
           x: d3Mouse(node)[0],
           y: d3Mouse(node)[1]
         }
-        this.map.callback_manager.run('new_text_label', null, coords)
+        const shiftKey = d3Selection.event.shiftKey
+        this.map.callback_manager.run('new_text_label', null, coords, shiftKey)
       }.bind(this, this.map.sel.node()))
     } else {
       this.textLabelMousedown = this.selectableMousedown

@@ -384,7 +384,7 @@ module.exports = function(container, config) {
         if (keyCode == 13) { // enter
             // get current
             var id = dropDownController.get_current_row().id;
-            rs.onEnter(id);
+            rs.onEnter(id, e);
             return;
         }
 

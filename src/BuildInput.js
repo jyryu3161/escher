@@ -282,7 +282,7 @@ export default class BuildInput {
     // else this.completely.setText("")
     this.completely.setText('')
 
-    const checkAndBuild = id => {
+    const checkAndBuild = (id, shiftKey) => {
       if (id !== null) {
         // make sure the selected node exists, in case changes were made in the meantime
         if (startingFromScratch) {
@@ -299,12 +299,17 @@ export default class BuildInput {
                                                selectedNode.node_id,
                                                this.direction_arrow.getRotation())
         }
+        // Auto-switch to brush mode after adding reaction (unless Shift is held)
+        if (!shiftKey) {
+          this.map.callback_manager.run('switch_to_brush_mode')
+        }
       }
     }
-    this.completely.onEnter = function (id) {
+    this.completely.onEnter = function (id, event) {
+      const shiftKey = event && event.shiftKey
       this.setText('')
       this.onChange('')
-      checkAndBuild(id)
+      checkAndBuild(id, shiftKey)
     }
 
     return true

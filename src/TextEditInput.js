@@ -17,6 +17,7 @@ export default class TextEditInput {
     this.setUpZoomCallbacks(zoomContainer)
 
     this.isNew = false
+    this.keepTextMode = false
   }
 
   setUpMapCallbacks (map) {
@@ -26,11 +27,12 @@ export default class TextEditInput {
     })
 
     // new text_label
-    map.callback_manager.set('new_text_label.text_edit_input', coords => {
+    map.callback_manager.set('new_text_label.text_edit_input', (coords, shiftKey) => {
       if (this.activeTarget !== null) {
         this._acceptChanges(this.activeTarget.target)
       }
       this.hide()
+      this.keepTextMode = shiftKey || false
       this._addAndEdit(coords)
     })
 
@@ -114,6 +116,8 @@ export default class TextEditInput {
 
   _acceptChanges (target) {
     const value = this.input.node().value
+    const wasNew = this.isNew
+    const shouldKeepMode = this.keepTextMode
     if (value === '') {
       // Delete the label
       target.each(d => {
@@ -129,6 +133,11 @@ export default class TextEditInput {
         textLabelIds.push(d.text_label_id)
       })
     }
+    // Auto-switch to brush mode after adding new text (unless Shift was held)
+    if (wasNew && !shouldKeepMode) {
+      this.map.callback_manager.run('switch_to_brush_mode')
+    }
+    this.keepTextMode = false
   }
 
   _addAndEdit (coords) {
