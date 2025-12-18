@@ -109,6 +109,25 @@ module.exports = function(container, config) {
     dropDown.style.whiteSpace = 'pre';
     dropDown.style.overflowY = 'scroll';
 
+    var addButton = thisDocument.createElement('button');
+    addButton.textContent = 'Add';
+    addButton.style.position = 'absolute';
+    addButton.style.visibility = 'hidden';
+    addButton.style.padding = '4px 12px';
+    addButton.style.fontSize = config.fontSize;
+    addButton.style.fontFamily = config.fontFamily;
+    addButton.style.backgroundColor = '#4CAF50';
+    addButton.style.color = 'white';
+    addButton.style.border = 'none';
+    addButton.style.borderRadius = '3px';
+    addButton.style.cursor = 'pointer';
+    addButton.style.zIndex = config.dropDownZIndex;
+    addButton.style.right = '-50px';
+    addButton.style.top = '0';
+    addButton.onmousedown = function(e) { e.preventDefault(); };
+
+    var selectedReactionId = null;
+
     var createDropDownController = function(elem) {
         var rows = [];
         var ix = 0;
@@ -120,13 +139,25 @@ module.exports = function(container, config) {
         var onClick = function(e) {
             e.preventDefault();
             e.stopPropagation();
-            p.onmouseselection(this.id, e);
+            var clickedIndex = rows.indexOf(this);
+            if (clickedIndex !== -1) {
+                ix = clickedIndex;
+                p.highlight(clickedIndex);
+                selectedReactionId = this.id;
+                addButton.style.visibility = 'visible';
+            }
         }
 
         var p = {
-            hide :  function() { elem.style.visibility = 'hidden'; },
+            hide :  function() {
+                elem.style.visibility = 'hidden';
+                addButton.style.visibility = 'hidden';
+                selectedReactionId = null;
+            },
             refresh : function(token, options) {
                 elem.style.visibility = 'hidden';
+                addButton.style.visibility = 'hidden';
+                selectedReactionId = null;
                 ix = 0;
                 elem.innerHTML ='';
                 var vph = (thisWindow.innerHeight || thisDocument.documentElement.clientHeight);
@@ -220,6 +251,17 @@ module.exports = function(container, config) {
     }
 
     wrapper.appendChild(dropDown);
+    wrapper.appendChild(addButton);
+
+    addButton.onclick = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (selectedReactionId) {
+            rs.onEnter(selectedReactionId, e);
+            rs.input.focus();
+        }
+    };
+
     container.appendChild(wrapper);
 
     var spacer,
@@ -383,9 +425,11 @@ module.exports = function(container, config) {
         }
 
         if (keyCode == 13) { // enter
-            // get current
-            var id = dropDownController.get_current_row().id;
-            rs.onEnter(id, e);
+            // only proceed if there's a valid selected reaction
+            if (!selectedReactionId) {
+                return;
+            }
+            rs.onEnter(selectedReactionId, e);
             return;
         }
 
@@ -393,6 +437,14 @@ module.exports = function(container, config) {
             var m = dropDownController.move(+1);
             if (m == '') { rs.onArrowDown(); }
             txtHint.value = rs.get_hint(m);
+            var currentRow = dropDownController.get_current_row();
+            if (currentRow && currentRow.id) {
+                selectedReactionId = currentRow.id;
+                addButton.style.visibility = 'visible';
+            } else {
+                selectedReactionId = null;
+                addButton.style.visibility = 'hidden';
+            }
             return;
         }
 
@@ -400,6 +452,14 @@ module.exports = function(container, config) {
             var m = dropDownController.move(-1);
             if (m == '') { rs.onArrowUp(); }
             txtHint.value = rs.get_hint(m);
+            var currentRow = dropDownController.get_current_row();
+            if (currentRow && currentRow.id) {
+                selectedReactionId = currentRow.id;
+                addButton.style.visibility = 'visible';
+            } else {
+                selectedReactionId = null;
+                addButton.style.visibility = 'hidden';
+            }
             e.preventDefault();
             e.stopPropagation();
             return;
