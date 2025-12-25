@@ -37,6 +37,7 @@ export default class Behavior {
     this.reactionLabelMouseover = null
     this.reactionLabelTouch = null
     this.reactionLabelMouseout = null
+    this.reactionLabelClick = null
     this.geneLabelMouseover = null
     this.geneLabelTouch = null
     this.geneLabelMouseout = null
@@ -348,6 +349,10 @@ export default class Behavior {
       this.reactionLabelMouseover = getMouseover('reaction_label')
       this.reactionLabelTouch = getMouseover('reaction_label')
       this.reactionLabelMouseout = mouseout
+      this.reactionLabelClick = d => {
+        const coords = { x: d.label_x, y: d.label_y }
+        this.map.callback_manager.run('reaction_label_click', null, d, coords)
+      }
       this.geneLabelMouseover = getMouseover('gene_label')
       this.geneLabelTouch = getMouseover('gene_label')
       this.geneLabelMouseout = mouseout
@@ -358,6 +363,7 @@ export default class Behavior {
       this.reactionLabelMouseover = null
       this.reactionLabelTouch = null
       this.reactionLabelMouseout = null
+      this.reactionLabelClick = null
       this.geneLabelMouseover = null
       this.geneLabelTouch = null
       this.geneLabelMouseout = null

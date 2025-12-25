@@ -173,6 +173,7 @@ function update_reaction_label (update_selection, has_data_on_reactions) {
   const reactionLabelMouseover = this.behavior.reactionLabelMouseover
   const reactionLabelMouseout = this.behavior.reactionLabelMouseout
   const reactionLabelTouch = this.behavior.reactionLabelTouch
+  const reactionLabelClick = this.behavior.reactionLabelClick
   const geneLabelMouseover = this.behavior.geneLabelMouseover
   const geneLabelMouseout = this.behavior.geneLabelMouseout
   const geneLabelTouch = this.behavior.geneLabelTouch
@@ -188,6 +189,7 @@ function update_reaction_label (update_selection, has_data_on_reactions) {
   // update label visibility
   var label = update_selection.select('.reaction-label')
     .attr('visibility', hide_all_labels ? 'hidden' : 'visible')
+    .on('click', reactionLabelClick)
 
   if (!hide_all_labels) {
     label

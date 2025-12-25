@@ -35,6 +35,11 @@ Escher is a web application for building, sharing, and embedding data-rich visua
 - Webpack for bundling
 
 ## Recent Changes
+- December 25, 2025: UX Improvement - Reaction label click for identical reactions
+  - Click on a reaction label in the map to see a dropdown of reactions with identical metabolites
+  - Select a reaction from the dropdown to add it connected to the existing reaction via shared metabolite nodes
+  - Files modified: Behavior.js, Draw.js, BuildInput.js, Map.js
+
 - December 18, 2025: UX Improvement - Two-step reaction addition
   - Click on a reaction name in the dropdown now SELECTS it (highlights) instead of immediately adding
   - A green "Add" button appears when a reaction is selected

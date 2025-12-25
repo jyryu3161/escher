@@ -66,6 +66,25 @@ export default class BuildInput {
         this.toggle(false)
       }
     })
+    map.callback_manager.set('reaction_label_click.input', (reactionData, coords) => {
+      if (reactionData) {
+        const hasOptions = this.reloadForIdenticalReactions(reactionData, coords)
+        if (hasOptions) {
+          // Activate BuildInput without triggering reloadAtSelected
+          this.is_active = true
+          this.toggleStartReactionListener(true)
+          this.direction_arrow.setLocation(coords)
+          this.direction_arrow.show()
+          // Show the dropdown - place() already called in reloadForIdenticalReactions
+          this.clear_escape = this.map.key_manager
+            .addEscapeListener(() => this.hideDropdown(), true)
+          // Clear any previous text and show all options
+          this.completely.setText('')
+          this.completely.repaint()
+          this.completely.input.focus()
+        }
+      }
+    })
     map.callback_manager.set('deselect_nodes', () => {
       this.direction_arrow.hide()
       this.hideDropdown()
@@ -305,6 +324,186 @@ export default class BuildInput {
         }
       }
     }
+    this.completely.onEnter = function (id, event) {
+      const shiftKey = event && event.shiftKey
+      this.setText('')
+      this.onChange('')
+      checkAndBuild(id, shiftKey)
+    }
+
+    return true
+  }
+
+  /**
+   * Reload data for autocomplete box with reactions that have identical metabolites.
+   * @param {Object} reactionData - The reaction data from the clicked reaction label.
+   * @param {Object} coords - The coordinates for the dropdown.
+   * @return {Boolean} Returns true if there are candidate reactions.
+   */
+  reloadForIdenticalReactions (reactionData, coords) {
+    this.place(coords)
+
+    if (this.map.cobra_model === null) {
+      this.completely.setText('Cannot add: No model.')
+      return false
+    }
+
+    const showNames = this.settings.get('identifiers_on_map') === 'name'
+    const allowDuplicates = this.settings.get('allow_building_duplicate_reactions')
+
+    // Get metabolite IDs from the clicked reaction
+    const clickedReactionId = reactionData.bigg_id
+    const cobraReactions = this.map.cobra_model.reactions
+    const cobraMetabolites = this.map.cobra_model.metabolites
+    const reactions = this.map.reactions
+
+    // Find the reaction in the model to get its metabolites
+    const sourceReaction = cobraReactions[clickedReactionId]
+    if (!sourceReaction) {
+      this.completely.setText('Reaction not found in model.')
+      return false
+    }
+
+    // Get metabolite IDs as a sorted array for comparison
+    const sourceMetIds = Object.keys(sourceReaction.metabolites).sort()
+
+    const options = []
+    const hasDataOnReactions = this.map.has_data_on_reactions
+
+    // Find reactions with identical metabolites
+    for (let biggId in cobraReactions) {
+      // Skip the same reaction
+      if (biggId === clickedReactionId) continue
+
+      // Skip already drawn reactions (unless duplicates allowed)
+      if (!allowDuplicates && this.alreadyDrawn(biggId, reactions)) continue
+
+      const reaction = cobraReactions[biggId]
+      const metIds = Object.keys(reaction.metabolites).sort()
+
+      // Check if metabolites are identical
+      if (metIds.length !== sourceMetIds.length) continue
+      let identical = true
+      for (let i = 0; i < metIds.length; i++) {
+        if (metIds[i] !== sourceMetIds[i]) {
+          identical = false
+          break
+        }
+      }
+      if (!identical) continue
+
+      // This reaction has identical metabolites
+      const showReactionName = showNames ? reaction.name : biggId
+
+      // Get metabolite names for display
+      let mets = {}
+      const showMetNames = []
+      if (showNames) {
+        for (let metId in reaction.metabolites) {
+          const name = cobraMetabolites[metId].name
+          mets[name] = reaction.metabolites[metId]
+          showMetNames.push(name)
+        }
+      } else {
+        mets = utils.clone(reaction.metabolites)
+        for (let metId in reaction.metabolites) {
+          showMetNames.push(metId)
+        }
+      }
+      const showGeneNames = _.flatten(reaction.genes.map(g => [g.name, g.biggId]))
+
+      const reactionString = CobraModel.build_reaction_string(mets,
+        reaction.reversibility,
+        reaction.lower_bound,
+        reaction.upper_bound)
+      const matches = [showReactionName].concat(showMetNames).concat(showGeneNames).filter(x => x)
+
+      if (hasDataOnReactions) {
+        options.push({
+          reaction_data: reaction.data,
+          html: '<b>' + showReactionName + '</b>: ' + reaction.data_string,
+          matches,
+          id: biggId
+        })
+      } else {
+        options.push({
+          html: '<b>' + showReactionName + '</b>\t' + reactionString,
+          matches,
+          id: biggId
+        })
+      }
+    }
+
+    if (options.length === 0) {
+      this.completely.setText('No identical reactions found.')
+      return false
+    }
+
+    // Sort options
+    const sortFn = hasDataOnReactions
+      ? (x, y) => Math.abs(x.reaction_data) > Math.abs(y.reaction_data) ? -1 : 1
+      : (x, y) => x.html.toLowerCase() < y.html.toLowerCase() ? -1 : 1
+
+    this.completely.options = options.sort(sortFn)
+    this.completely.setText('')
+
+    // Find a metabolite node from the clicked reaction to connect the new reaction
+    const clickedMapReaction = Object.values(reactions).find(r => r.bigg_id === clickedReactionId)
+    let connectionNodeId = null
+    if (clickedMapReaction) {
+      // Find a primary (non-secondary) metabolite node from this reaction
+      for (let segId in clickedMapReaction.segments) {
+        const seg = clickedMapReaction.segments[segId]
+        // Check from_node first
+        if (seg.from_node_id && this.map.nodes[seg.from_node_id]) {
+          const node = this.map.nodes[seg.from_node_id]
+          // Prefer primary metabolites (non-secondary, non-midmarker)
+          if (node.node_type === 'metabolite' && !node.node_is_primary === false) {
+            connectionNodeId = seg.from_node_id
+            break
+          }
+        }
+        // Check to_node
+        if (seg.to_node_id && this.map.nodes[seg.to_node_id]) {
+          const node = this.map.nodes[seg.to_node_id]
+          if (node.node_type === 'metabolite' && !node.node_is_primary === false) {
+            connectionNodeId = seg.to_node_id
+            break
+          }
+        }
+      }
+      // Fallback: use any available node from segments
+      if (!connectionNodeId) {
+        for (let segId in clickedMapReaction.segments) {
+          const seg = clickedMapReaction.segments[segId]
+          if (seg.from_node_id && this.map.nodes[seg.from_node_id]) {
+            connectionNodeId = seg.from_node_id
+            break
+          }
+          if (seg.to_node_id && this.map.nodes[seg.to_node_id]) {
+            connectionNodeId = seg.to_node_id
+            break
+          }
+        }
+      }
+    }
+
+    if (!connectionNodeId) {
+      this.completely.setText('No connection node found.')
+      return false
+    }
+
+    const checkAndBuild = (id, shiftKey) => {
+      if (id !== null && connectionNodeId !== null) {
+        this.map.new_reaction_for_metabolite(id,
+          connectionNodeId,
+          this.direction_arrow.getRotation())
+        if (!shiftKey) {
+          this.map.callback_manager.run('switch_to_brush_mode')
+        }
+      }
+    }
+
     this.completely.onEnter = function (id, event) {
       const shiftKey = event && event.shiftKey
       this.setText('')
