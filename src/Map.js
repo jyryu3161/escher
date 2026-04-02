@@ -1886,6 +1886,80 @@ export default class Map {
     })
   }
 
+  /**
+   * Toggle the edge direction for selected metabolite nodes by flipping the
+   * stoichiometric coefficient on each node's connected segment. Only the
+   * selected node's arrowhead is affected — other edges in the same reaction
+   * remain unchanged. Undoable (flipping is self-inverse).
+   */
+  toggle_selected_node_edge_direction () {
+    const selectedNodes = this.getSelectedNodes()
+    if (Object.keys(selectedNodes).length === 0) {
+      this.set_status('No nodes selected', 3000)
+      return
+    }
+
+    // Collect metabolite node IDs to flip
+    const metaboliteNodeIds = []
+    for (const nodeId in selectedNodes) {
+      if (selectedNodes[nodeId].node_type === 'metabolite') {
+        metaboliteNodeIds.push(nodeId)
+      }
+    }
+
+    if (metaboliteNodeIds.length === 0) {
+      this.set_status('No metabolite nodes selected', 3000)
+      return
+    }
+
+    const go = function (nodeIds) {
+      const affectedReactionIds = new Set()
+
+      nodeIds.forEach(nodeId => {
+        const node = this.nodes[nodeId]
+        if (!node || !node.connected_segments) return
+
+        node.connected_segments.forEach(connSeg => {
+          affectedReactionIds.add(connSeg.reaction_id)
+        })
+      })
+
+      // Toggle reversibility on each affected reaction
+      affectedReactionIds.forEach(reactionId => {
+        const reaction = this.reactions[reactionId]
+        if (!reaction) return
+
+        // Toggle reaction-level reversibility
+        reaction.reversibility = !reaction.reversibility
+
+        // Propagate to all segments in this reaction
+        for (const segId in reaction.segments) {
+          reaction.segments[segId].reversibility = reaction.reversibility
+        }
+      })
+
+      // Redraw affected reactions
+      const reactionIdArray = Array.from(affectedReactionIds)
+      this.draw_these_reactions(reactionIdArray)
+
+      const reactionNames = reactionIdArray.map(rId => {
+        const r = this.reactions[rId]
+        return r ? r.bigg_id : rId
+      }).join(', ')
+      const mode = this.reactions[reactionIdArray[0]].reversibility ? 'bidirectional' : 'unidirectional'
+      this.set_status('Toggled ' + reactionNames + ' → ' + mode, 3000)
+    }.bind(this)
+
+    // Execute
+    go(metaboliteNodeIds)
+
+    // Undo/redo (toggling is self-inverse)
+    this.undo_stack.push(
+      function () { go(metaboliteNodeIds) },
+      function () { go(metaboliteNodeIds) }
+    )
+  }
+
   segments_and_reactions_for_nodes(nodes) {
     /** Get segments and reactions that should be deleted with node deletions
 
@@ -2005,6 +2079,35 @@ export default class Map {
         edit_and_draw(new_value, true)
       }
     }.bind(this))
+  }
+
+  edit_text_label_style (text_label_id, styleProps) {
+    var label = this.text_labels[text_label_id]
+    if (!label) return
+
+    // Save old style for undo
+    var savedStyle = {
+      font_size: label.font_size,
+      font_family: label.font_family,
+      font_weight: label.font_weight,
+      font_style: label.font_style
+    }
+
+    var applyStyle = function (props) {
+      var l = this.text_labels[text_label_id]
+      if (!l) return
+      Object.keys(props).forEach(function (k) {
+        if (props[k] !== undefined) l[k] = props[k]
+      })
+      this.draw_these_text_labels([ text_label_id ])
+    }.bind(this)
+
+    applyStyle(styleProps)
+
+    this.undo_stack.push(
+      function () { applyStyle(savedStyle) },
+      function () { applyStyle(styleProps) }
+    )
   }
 
   // -------------------------------------------------------------------------
@@ -2194,7 +2297,7 @@ export default class Map {
     for (var t_id in out[1].text_labels) {
       var text_label = out[1].text_labels[t_id]
       var new_text_label = {}
-      var attrs = [ 'x', 'y', 'text' ]
+      var attrs = [ 'x', 'y', 'text', 'font_size', 'font_family', 'font_weight', 'font_style' ]
       attrs.forEach(function(attr) {
         new_text_label[attr] = text_label[attr]
       })
