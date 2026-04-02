@@ -646,6 +646,8 @@ class Builder {
       align_horizontal: () => this.map.align_horizontal(),
       togglePrimary: () => this.map.toggle_selected_node_primary(),
       cyclePrimary: () => this.map.cycle_primary_node(),
+      toggleReversibility: () => this.map.toggle_selected_node_edge_direction(),
+      toggleStretch: () => this.toggle_stretch(),
       selectAll: () => this.map.select_all(),
       selectNone: () => this.map.select_none(),
       invertSelection: () => this.map.invert_selection(),
@@ -735,6 +737,7 @@ class Builder {
       mode: this.mode,
       settings: this.settings,
       setMode: mode => this._setMode(mode),
+      toggleStretch: () => this.toggle_stretch(),
       zoomContainer: this.zoom_container,
       map: this.map,
       buildInput: this.build_input,
@@ -756,6 +759,17 @@ class Builder {
    * Set the mode
    */
   _setMode (mode) {
+    // Prevent re-entrancy: _acceptChanges may trigger switch_to_brush_mode
+    // which calls _setMode again. The outer call should take priority.
+    if (this._settingMode) return
+    this._settingMode = true
+
+    // Accept any pending text edit before switching modes
+    if (this.text_edit_input && this.text_edit_input.activeTarget) {
+      this.text_edit_input._acceptChanges(this.text_edit_input.activeTarget.target)
+      this.text_edit_input.hide()
+    }
+
     this.mode = mode
 
     // input
@@ -777,6 +791,8 @@ class Builder {
       this.map.behavior.toggleRotationMode(mode === 'rotate') // before toggleSelectableDrag
       this.map.behavior.toggleSelectableDrag(mode === 'brush') // XX
     }
+    // Always turn off stretch overlay when switching modes
+    this.map.behavior.toggleStretchMode(false)
     this.map.behavior.toggleSelectableClick(mode === 'build' || mode === 'brush') // XX
     this.map.behavior.toggleLabelDrag(mode === 'brush') // XX
     this.map.behavior.toggleTextLabelEdit(mode === 'text') // XX
@@ -795,6 +811,7 @@ class Builder {
 
     // callback
     this.callback_manager.run('set_mode', null, mode)
+    this._settingMode = false
   }
 
   /** For documentation of this function, see docs/javascript_api.rst. */
@@ -825,6 +842,19 @@ class Builder {
   rotate_mode () { // eslint-disable-line camelcase
     this.callback_manager.run('rotate_mode')
     this._setMode('rotate')
+  }
+
+  /**
+   * Toggle stretch sub-mode. Works within brush mode — select nodes first,
+   * then press S to enter stretch. Drag to stretch selected nodes.
+   * Press S again or Esc to exit.
+   */
+  toggle_stretch () { // eslint-disable-line camelcase
+    // Switch to brush mode first if not already
+    if (this.mode !== 'brush') {
+      this._setMode('brush')
+    }
+    this.map.behavior.toggleStretchMode()
   }
 
   /** For documentation of this function, see docs/javascript_api.rst. */
@@ -1213,6 +1243,13 @@ class Builder {
         ignoreWithInput: true,
         requires: 'enable_editing'
       },
+      toggle_stretch: {
+        key: 's',
+        target: this,
+        fn: this.toggle_stretch,
+        ignoreWithInput: true,
+        requires: 'enable_editing'
+      },
       text_mode: {
         key: 't',
         target: this,
@@ -1269,6 +1306,13 @@ class Builder {
         key: 'c',
         target: map,
         fn: map.cycle_primary_node,
+        ignoreWithInput: true,
+        requires: 'enable_editing'
+      },
+      toggle_reversibility: {
+        key: 'd',
+        target: map,
+        fn: map.toggle_selected_node_edge_direction,
         ignoreWithInput: true,
         requires: 'enable_editing'
       },

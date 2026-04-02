@@ -92,6 +92,13 @@ class ButtonPanel extends Component {
           </button>
           <button
             className='buttonGroup btn'
+            title={`Stretch selected${enableKeys ? ' (S)' : ''}`}
+            onClick={() => this.props.toggleStretch()}
+          >
+            <i className='icon-resize-full' />
+          </button>
+          <button
+            className='buttonGroup btn'
             title={`Text mode${enableKeys ? ' (T)' : ''}`}
             for='text'
             id={this.props.mode === 'text' ? 'currentMode' : null}

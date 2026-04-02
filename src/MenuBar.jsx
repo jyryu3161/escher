@@ -145,6 +145,11 @@ class MenuBar extends Component {
             disabledButtons={disabledButtons}
           />
           <MenuButton
+            name={'Stretch selected' + (enableKeys ? ' (S)' : '')}
+            onClick={() => this.props.toggleStretch()}
+            disabledButtons={disabledButtons}
+          />
+          <MenuButton
             name={'Text mode' + (enableKeys ? ' (T)' : '')}
             checkMark={this.props.mode === 'text'}
             onClick={() => this.props.setMode('text')}
@@ -185,6 +190,11 @@ class MenuBar extends Component {
           <MenuButton
             name={'Rotate reactant locations' + (enableKeys ? ' (C)' : '')}
             onClick={() => this.props.cyclePrimary()}
+            disabledButtons={disabledButtons}
+          />
+          <MenuButton
+            name={'Toggle reversibility' + (enableKeys ? ' (D)' : '')}
+            onClick={() => this.props.toggleReversibility()}
             disabledButtons={disabledButtons}
           />
           <li name='divider' />

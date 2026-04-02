@@ -25,6 +25,10 @@ export default class Behavior {
     this.rotationModeEnabled = false
     this.rotationDrag = d3Drag()
 
+    // stretch sub-mode (works within brush mode)
+    this.stretchModeEnabled = false
+    this.stretchDrag = null
+
     // behaviors to be applied
     this.selectableMousedown = null
     this.textLabelMousedown = null
@@ -189,6 +193,199 @@ export default class Behavior {
       this.rotationDrag = null
       this.selectableDrag = null
     }
+  }
+
+  /**
+   * Toggle stretch sub-mode. Shows a PPT-style bounding box with 8 handles
+   * around selected nodes. Drag handles to resize.
+   */
+  toggleStretchMode (onOff) {
+    if (onOff === undefined) onOff = !this.stretchModeEnabled
+    this.stretchModeEnabled = onOff
+
+    if (onOff) {
+      const selectedNodes = this.map.getSelectedNodes()
+      if (Object.keys(selectedNodes).length === 0) {
+        this.map.set_status('Select nodes first, then press S to stretch', 3000)
+        this.stretchModeEnabled = false
+        return
+      }
+
+      this._showStretchBox(selectedNodes)
+      this.map.set_status('Drag a handle to stretch. Press S or Esc to exit.', 3000)
+    } else {
+      this._removeStretchBox()
+      this.stretchModeEnabled = false
+    }
+  }
+
+  _getNodesBBox (selectedNodes) {
+    const pad = 20
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity
+    for (const nId in selectedNodes) {
+      const n = selectedNodes[nId]
+      if (n.x < minX) minX = n.x
+      if (n.y < minY) minY = n.y
+      if (n.x > maxX) maxX = n.x
+      if (n.y > maxY) maxY = n.y
+    }
+    return { x: minX - pad, y: minY - pad, w: maxX - minX + pad * 2, h: maxY - minY + pad * 2 }
+  }
+
+  _showStretchBox (selectedNodes) {
+    this._removeStretchBox()
+
+    const map = this.map
+    const nodes = map.nodes
+    const reactions = map.reactions
+    const beziers = map.beziers
+    const selectedNodeIds = Object.keys(selectedNodes)
+    const bbox = this._getNodesBBox(selectedNodes)
+
+    const g = map.sel.append('g').attr('id', 'stretch-box')
+
+    // Dashed bounding rectangle
+    g.append('rect')
+      .attr('x', bbox.x).attr('y', bbox.y)
+      .attr('width', bbox.w).attr('height', bbox.h)
+      .style('fill', 'none')
+      .style('stroke', '#4285f4')
+      .style('stroke-width', '1.5px')
+      .style('stroke-dasharray', '6,3')
+      .style('pointer-events', 'none')
+
+    // 8 handles: [name, cx, cy, cursor, anchorX, anchorY, scaleX, scaleY]
+    const handles = [
+      ['tl', bbox.x, bbox.y, 'nwse-resize'],
+      ['tc', bbox.x + bbox.w / 2, bbox.y, 'ns-resize'],
+      ['tr', bbox.x + bbox.w, bbox.y, 'nesw-resize'],
+      ['ml', bbox.x, bbox.y + bbox.h / 2, 'ew-resize'],
+      ['mr', bbox.x + bbox.w, bbox.y + bbox.h / 2, 'ew-resize'],
+      ['bl', bbox.x, bbox.y + bbox.h, 'nesw-resize'],
+      ['bc', bbox.x + bbox.w / 2, bbox.y + bbox.h, 'ns-resize'],
+      ['br', bbox.x + bbox.w, bbox.y + bbox.h, 'nwse-resize']
+    ]
+
+    const handleSize = 8
+
+    handles.forEach(([name, cx, cy, cursor]) => {
+      // Determine anchor (opposite corner/edge) and which axes to scale
+      let anchorX, anchorY, doX, doY
+      if (name.includes('l')) { anchorX = bbox.x + bbox.w; doX = true }
+      else if (name.includes('r')) { anchorX = bbox.x; doX = true }
+      else { anchorX = bbox.x + bbox.w / 2; doX = false }
+      if (name.includes('t')) { anchorY = bbox.y + bbox.h; doY = true }
+      else if (name.includes('b')) { anchorY = bbox.y; doY = true }
+      else { anchorY = bbox.y + bbox.h / 2; doY = false }
+
+      // Store original positions for scaling
+      let origPositions = null
+      let origBBox = null
+
+      const handle = g.append('rect')
+        .attr('x', cx - handleSize / 2)
+        .attr('y', cy - handleSize / 2)
+        .attr('width', handleSize)
+        .attr('height', handleSize)
+        .style('fill', '#ffffff')
+        .style('stroke', '#4285f4')
+        .style('stroke-width', '1.5px')
+        .style('cursor', cursor)
+        .style('pointer-events', 'all')
+
+      handle.call(d3Drag()
+        .on('start', () => {
+          d3Selection.event.sourceEvent.stopPropagation()
+          // Snapshot original positions
+          origPositions = {}
+          selectedNodeIds.forEach(nId => {
+            origPositions[nId] = { x: nodes[nId].x, y: nodes[nId].y }
+          })
+          origBBox = { x: bbox.x, y: bbox.y, w: bbox.w, h: bbox.h }
+        })
+        .on('drag', () => {
+          const dx = d3Selection.event.dx
+          const dy = d3Selection.event.dy
+          if (!origBBox || origBBox.w === 0 || origBBox.h === 0) return
+
+          // Compute new bbox dimension
+          const sign_x = name.includes('r') || name === 'mr' ? 1 : (name.includes('l') || name === 'ml' ? -1 : 0)
+          const sign_y = name.includes('b') || name === 'bc' ? 1 : (name.includes('t') || name === 'tc' ? -1 : 0)
+
+          bbox.w += doX ? dx * sign_x : 0
+          bbox.h += doY ? dy * sign_y : 0
+          if (name.includes('l')) bbox.x += dx
+          if (name.includes('t')) bbox.y += dy
+
+          // Prevent zero/negative size
+          if (bbox.w < 20) bbox.w = 20
+          if (bbox.h < 20) bbox.h = 20
+
+          // Scale factors
+          const sx = doX ? bbox.w / origBBox.w : 1
+          const sy = doY ? bbox.h / origBBox.h : 1
+
+          // Move each node to scaled position relative to anchor
+          selectedNodeIds.forEach(nId => {
+            const orig = origPositions[nId]
+            if (!orig) return
+            const newX = anchorX + (orig.x - anchorX) * sx
+            const newY = anchorY + (orig.y - anchorY) * sy
+            const displacement = {
+              x: newX - nodes[nId].x,
+              y: newY - nodes[nId].y
+            }
+            build.moveNodeAndDependents(nodes[nId], nId, reactions, beziers, displacement)
+          })
+
+          map.draw_these_nodes(selectedNodeIds)
+          map.draw_these_reactions(Object.keys(reactions))
+
+          // Update bounding rect position (handles stay attached to drag)
+          g.select('rect').filter(function () { return !this.style.cursor })
+            .attr('x', bbox.x).attr('y', bbox.y)
+            .attr('width', bbox.w).attr('height', bbox.h)
+        })
+        .on('end', () => {
+          const savedOrigPositions = origPositions
+          const savedNodeIds = selectedNodeIds.slice()
+
+          // Rebuild stretch box with updated positions
+          this._removeStretchBox()
+          this._showStretchBox(map.getSelectedNodes())
+
+          map.undo_stack.push(
+            () => {
+              savedNodeIds.forEach(nId => {
+                const orig = savedOrigPositions[nId]
+                if (!orig || !nodes[nId]) return
+                const displacement = { x: orig.x - nodes[nId].x, y: orig.y - nodes[nId].y }
+                build.moveNodeAndDependents(nodes[nId], nId, reactions, beziers, displacement)
+              })
+              map.draw_these_nodes(savedNodeIds)
+              map.draw_these_reactions(Object.keys(reactions))
+              if (this.stretchModeEnabled) {
+                this._removeStretchBox()
+                this._showStretchBox(map.getSelectedNodes())
+              }
+            },
+            () => {
+              map.draw_these_nodes(savedNodeIds)
+              map.draw_these_reactions(Object.keys(reactions))
+              if (this.stretchModeEnabled) {
+                this._removeStretchBox()
+                this._showStretchBox(map.getSelectedNodes())
+              }
+            }
+          )
+          origPositions = null
+        })
+      )
+    })
+  }
+
+  _removeStretchBox () {
+    this.map.sel.selectAll('#stretch-box').remove()
   }
 
   /**
