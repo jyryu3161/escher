@@ -119,6 +119,36 @@ resizes. */
   border: 1px solid #cccccc;
   font-size: 22px;
 }
+.escher-container #text-edit-input .style-toolbar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+  align-items: center;
+}
+.escher-container #text-edit-input .style-toolbar select {
+  font-size: 13px;
+  padding: 2px 6px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: #fff;
+  cursor: pointer;
+}
+.escher-container #text-edit-input .style-toolbar button {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: #fff;
+  cursor: pointer;
+  min-width: 28px;
+  line-height: 1.4;
+}
+.escher-container #text-edit-input .style-toolbar button.active {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
 
 .escher-container #tooltip-container {
   -ms-touch-action: none;

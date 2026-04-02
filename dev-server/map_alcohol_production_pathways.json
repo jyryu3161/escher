@@ -1,0 +1,2310 @@
+[
+  {
+    "map_name": "Alcohol Production Pathways",
+    "map_id": "alcohol_production",
+    "map_description": "\nLast Modified Thu Apr 02 2026 16:22:26 GMT+0900 (한국 표준시)",
+    "homepage": "https://escher.github.io",
+    "schema": "https://escher.github.io/escher/jsonschema/1-0-0#"
+  },
+  {
+    "reactions": {
+      "5157": {
+        "name": "Phosphate hexyltransferase",
+        "bigg_id": "PTH_hxa",
+        "reversibility": true,
+        "label_x": 114.08372592926025,
+        "label_y": 1203.6012573242188,
+        "gene_reaction_rule": "Q6H37_RS26095 or ptb or Q6H37_RS05975",
+        "genes": [
+          {
+            "bigg_id": "ptb",
+            "name": "G_ptb"
+          },
+          {
+            "bigg_id": "Q6H37_RS05975",
+            "name": "G_Q6H37_RS05975"
+          },
+          {
+            "bigg_id": "Q6H37_RS26095",
+            "name": "G_Q6H37_RS26095"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "coa_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "hxcoa_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "hxpi_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "pi_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "5161": {
+            "from_node_id": "5158",
+            "to_node_id": "5159",
+            "b1": null,
+            "b2": null
+          },
+          "5162": {
+            "from_node_id": "5159",
+            "to_node_id": "5160",
+            "b1": null,
+            "b2": null
+          },
+          "5164": {
+            "from_node_id": "5163",
+            "to_node_id": "5158",
+            "b1": {
+              "x": 26.083725929260254,
+              "y": 1233.6012573242188
+            },
+            "b2": {
+              "x": 82.08372592926025,
+              "y": 1233.6012573242188
+            }
+          },
+          "5166": {
+            "from_node_id": "5160",
+            "to_node_id": "5165",
+            "b1": {
+              "x": 186.08372592926025,
+              "y": 1233.6012573242188
+            },
+            "b2": {
+              "x": 242.08372592926025,
+              "y": 1233.6012573242188
+            }
+          },
+          "5168": {
+            "from_node_id": "5167",
+            "to_node_id": "5158",
+            "b1": {
+              "x": 131.08372592926025,
+              "y": 1198.6012573242188
+            },
+            "b2": {
+              "x": 127.08372592926025,
+              "y": 1218.6012573242188
+            }
+          },
+          "5170": {
+            "from_node_id": "5160",
+            "to_node_id": "5169",
+            "b1": {
+              "x": 141.08372592926025,
+              "y": 1248.6012573242188
+            },
+            "b2": {
+              "x": 137.08372592926025,
+              "y": 1268.6012573242188
+            }
+          }
+        }
+      },
+      "5171": {
+        "name": "Hexanoate kinase",
+        "bigg_id": "HEK_hxa",
+        "reversibility": true,
+        "label_x": 414.08372592926025,
+        "label_y": 1203.6012573242188,
+        "gene_reaction_rule": "buk",
+        "genes": [
+          {
+            "bigg_id": "buk",
+            "name": "G_buk"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "adp_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "atp_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "hxa_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "hxpi_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "5175": {
+            "from_node_id": "5172",
+            "to_node_id": "5173",
+            "b1": null,
+            "b2": null
+          },
+          "5176": {
+            "from_node_id": "5173",
+            "to_node_id": "5174",
+            "b1": null,
+            "b2": null
+          },
+          "5177": {
+            "from_node_id": "5165",
+            "to_node_id": "5172",
+            "b1": {
+              "x": 326.08372592926025,
+              "y": 1233.6012573242188
+            },
+            "b2": {
+              "x": 382.08372592926025,
+              "y": 1233.6012573242188
+            }
+          },
+          "5179": {
+            "from_node_id": "5174",
+            "to_node_id": "5178",
+            "b1": {
+              "x": 486.08372592926025,
+              "y": 1233.6012573242188
+            },
+            "b2": {
+              "x": 542.0837259292603,
+              "y": 1233.6012573242188
+            }
+          },
+          "5181": {
+            "from_node_id": "5180",
+            "to_node_id": "5172",
+            "b1": {
+              "x": 431.08372592926025,
+              "y": 1198.6012573242188
+            },
+            "b2": {
+              "x": 427.08372592926025,
+              "y": 1218.6012573242188
+            }
+          },
+          "5183": {
+            "from_node_id": "5174",
+            "to_node_id": "5182",
+            "b1": {
+              "x": 441.08372592926025,
+              "y": 1248.6012573242188
+            },
+            "b2": {
+              "x": 437.08372592926025,
+              "y": 1268.6012573242188
+            }
+          }
+        }
+      },
+      "5184": {
+        "name": "Aldehyde dehydrogenase/Alcohol dehydrogenase hexanal",
+        "bigg_id": "ADHE26",
+        "reversibility": true,
+        "label_x": -25.916274070739746,
+        "label_y": 1328.6012573242188,
+        "gene_reaction_rule": "Q6H37_RS06920 or adhE or Q6H37_RS27520 or Q6H37_RS27585",
+        "genes": [
+          {
+            "bigg_id": "Q6H37_RS06920",
+            "name": "G_Q6H37_RS06920"
+          },
+          {
+            "bigg_id": "Q6H37_RS27520",
+            "name": "G_Q6H37_RS27520"
+          },
+          {
+            "bigg_id": "adhE",
+            "name": "G_adhE"
+          },
+          {
+            "bigg_id": "Q6H37_RS27585",
+            "name": "G_Q6H37_RS27585"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "coa_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "h_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "hxal_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "hxcoa_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "nad_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "nadh_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "5188": {
+            "from_node_id": "5185",
+            "to_node_id": "5186",
+            "b1": null,
+            "b2": null
+          },
+          "5189": {
+            "from_node_id": "5186",
+            "to_node_id": "5187",
+            "b1": null,
+            "b2": null
+          },
+          "5190": {
+            "from_node_id": "5163",
+            "to_node_id": "5185",
+            "b1": {
+              "x": 11.083725929260254,
+              "y": 1271.1012573242188
+            },
+            "b2": {
+              "x": 47.083725929260254,
+              "y": 1321.1012573242188
+            }
+          },
+          "5192": {
+            "from_node_id": "5187",
+            "to_node_id": "5191",
+            "b1": {
+              "x": 121.08372592926025,
+              "y": 1396.1012573242188
+            },
+            "b2": {
+              "x": 157.08372592926025,
+              "y": 1446.1012573242188
+            }
+          },
+          "5194": {
+            "from_node_id": "5193",
+            "to_node_id": "5185",
+            "b1": {
+              "x": -44.916274070739746,
+              "y": 1344.6012573242188
+            },
+            "b2": {
+              "x": 23.083725929260254,
+              "y": 1352.6012573242188
+            }
+          },
+          "5196": {
+            "from_node_id": "5195",
+            "to_node_id": "5185",
+            "b1": {
+              "x": -44.916274070739746,
+              "y": 1372.6012573242188
+            },
+            "b2": {
+              "x": 23.083725929260254,
+              "y": 1364.6012573242188
+            }
+          },
+          "5198": {
+            "from_node_id": "5187",
+            "to_node_id": "5197",
+            "b1": {
+              "x": 85.08372592926025,
+              "y": 1352.6012573242188
+            },
+            "b2": {
+              "x": 73.08372592926025,
+              "y": 1344.6012573242188
+            }
+          },
+          "5200": {
+            "from_node_id": "5187",
+            "to_node_id": "5199",
+            "b1": {
+              "x": 85.08372592926025,
+              "y": 1364.6012573242188
+            },
+            "b2": {
+              "x": 73.08372592926025,
+              "y": 1372.6012573242188
+            }
+          }
+        }
+      },
+      "5201": {
+        "name": "Alcohol dehydrogenase (hexanol)",
+        "bigg_id": "ALCD6",
+        "reversibility": true,
+        "label_x": 339.08372592926025,
+        "label_y": 1453.6012573242188,
+        "gene_reaction_rule": "Q6H37_RS03495 or Q6H37_RS03850 or Q6H37_RS07545 or adhE or Q6H37_RS13220",
+        "genes": [
+          {
+            "bigg_id": "Q6H37_RS03850",
+            "name": "G_Q6H37_RS03850"
+          },
+          {
+            "bigg_id": "Q6H37_RS13220",
+            "name": "G_Q6H37_RS13220"
+          },
+          {
+            "bigg_id": "Q6H37_RS03495",
+            "name": "G_Q6H37_RS03495"
+          },
+          {
+            "bigg_id": "adhE",
+            "name": "G_adhE"
+          },
+          {
+            "bigg_id": "Q6H37_RS07545",
+            "name": "G_Q6H37_RS07545"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "h_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "hxal_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "hxoh_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "nad_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "nadh_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "5205": {
+            "from_node_id": "5202",
+            "to_node_id": "5203",
+            "b1": null,
+            "b2": null
+          },
+          "5206": {
+            "from_node_id": "5203",
+            "to_node_id": "5204",
+            "b1": null,
+            "b2": null
+          },
+          "5207": {
+            "from_node_id": "5191",
+            "to_node_id": "5202",
+            "b1": {
+              "x": 233.58372592926025,
+              "y": 1483.6012573242188
+            },
+            "b2": {
+              "x": 299.58372592926025,
+              "y": 1483.6012573242188
+            }
+          },
+          "5209": {
+            "from_node_id": "5204",
+            "to_node_id": "5208",
+            "b1": {
+              "x": 418.58372592926025,
+              "y": 1483.6012573242188
+            },
+            "b2": {
+              "x": 484.58372592926025,
+              "y": 1483.6012573242188
+            }
+          },
+          "5211": {
+            "from_node_id": "5210",
+            "to_node_id": "5202",
+            "b1": {
+              "x": 356.08372592926025,
+              "y": 1448.6012573242188
+            },
+            "b2": {
+              "x": 352.08372592926025,
+              "y": 1468.6012573242188
+            }
+          },
+          "5213": {
+            "from_node_id": "5212",
+            "to_node_id": "5202",
+            "b1": {
+              "x": 356.08372592926025,
+              "y": 1518.6012573242188
+            },
+            "b2": {
+              "x": 352.08372592926025,
+              "y": 1498.6012573242188
+            }
+          },
+          "5215": {
+            "from_node_id": "5204",
+            "to_node_id": "5214",
+            "b1": {
+              "x": 390.08372592926025,
+              "y": 1498.6012573242188
+            },
+            "b2": {
+              "x": 418.08372592926025,
+              "y": 1518.6012573242188
+            }
+          }
+        }
+      },
+      "5216": {
+        "name": "Hexanaldehyde:ferredoxin oxidoreductase",
+        "bigg_id": "HEXFDOR",
+        "reversibility": true,
+        "label_x": 424.08372592926025,
+        "label_y": 1348.6012573242188,
+        "gene_reaction_rule": "Q6H37_RS09410",
+        "genes": [
+          {
+            "bigg_id": "Q6H37_RS09410",
+            "name": "G_Q6H37_RS09410"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "fdxo_42_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "fdxr_42_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "h2o_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "h_c",
+            "coefficient": -3
+          },
+          {
+            "bigg_id": "hxa_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "hxal_c",
+            "coefficient": 1
+          }
+        ],
+        "segments": {
+          "5220": {
+            "from_node_id": "5217",
+            "to_node_id": "5218",
+            "b1": null,
+            "b2": null
+          },
+          "5221": {
+            "from_node_id": "5218",
+            "to_node_id": "5219",
+            "b1": null,
+            "b2": null
+          },
+          "5222": {
+            "from_node_id": "5178",
+            "to_node_id": "5217",
+            "b1": {
+              "x": 521.0837259292603,
+              "y": 1271.1012573242188
+            },
+            "b2": {
+              "x": 437.08372592926025,
+              "y": 1321.1012573242188
+            }
+          },
+          "5223": {
+            "from_node_id": "5219",
+            "to_node_id": "5191",
+            "b1": {
+              "x": 331.08372592926025,
+              "y": 1396.1012573242188
+            },
+            "b2": {
+              "x": 247.08372592926025,
+              "y": 1446.1012573242188
+            }
+          },
+          "5225": {
+            "from_node_id": "5224",
+            "to_node_id": "5217",
+            "b1": {
+              "x": 563.0837259292603,
+              "y": 1337.6012573242188
+            },
+            "b2": {
+              "x": 455.08372592926025,
+              "y": 1349.6012573242188
+            }
+          },
+          "5227": {
+            "from_node_id": "5226",
+            "to_node_id": "5217",
+            "b1": {
+              "x": 563.0837259292603,
+              "y": 1379.6012573242188
+            },
+            "b2": {
+              "x": 455.08372592926025,
+              "y": 1367.6012573242188
+            }
+          },
+          "5229": {
+            "from_node_id": "5219",
+            "to_node_id": "5228",
+            "b1": {
+              "x": 415.08372592926025,
+              "y": 1349.6012573242188
+            },
+            "b2": {
+              "x": 443.08372592926025,
+              "y": 1337.6012573242188
+            }
+          },
+          "5231": {
+            "from_node_id": "5219",
+            "to_node_id": "5230",
+            "b1": {
+              "x": 415.08372592926025,
+              "y": 1367.6012573242188
+            },
+            "b2": {
+              "x": 443.08372592926025,
+              "y": 1379.6012573242188
+            }
+          }
+        }
+      },
+      "5217": {
+        "name": "Phosphotransacetylase",
+        "bigg_id": "PTAr",
+        "reversibility": false,
+        "label_x": -181.93971165692307,
+        "label_y": -140.6988558704453,
+        "gene_reaction_rule": "Q6H37_RS05975 or pta",
+        "genes": [
+          {
+            "name": "G_Q6H37_RS05975",
+            "bigg_id": "Q6H37_RS05975"
+          },
+          {
+            "name": "G_pta",
+            "bigg_id": "pta"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "accoa_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "actp_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "coa_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "pi_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "5232": {
+            "from_node_id": "5232",
+            "to_node_id": "5233",
+            "b1": null,
+            "b2": null
+          },
+          "5233": {
+            "from_node_id": "5234",
+            "to_node_id": "5233",
+            "b1": null,
+            "b2": null
+          },
+          "5234": {
+            "from_node_id": "5232",
+            "to_node_id": "5231",
+            "b1": {
+              "x": -90.38478764569251,
+              "y": -82.99934146016727
+            },
+            "b2": {
+              "x": -90.38478764569251,
+              "y": -24.81259965101721
+            }
+          },
+          "5235": {
+            "from_node_id": "5234",
+            "to_node_id": "5235",
+            "b1": {
+              "x": -90.38478764569251,
+              "y": -220.08265599586747
+            },
+            "b2": {
+              "x": -90.38478764569251,
+              "y": -263.1042231750924
+            }
+          }
+        }
+      },
+      "5218": {
+        "name": "Acetaldehyde dehydrogenase (acetylating)",
+        "bigg_id": "ACALD",
+        "reversibility": true,
+        "label_x": 194.08121655002537,
+        "label_y": 91.06344939073085,
+        "gene_reaction_rule": "Q6H37_RS06920 or adhE or Q6H37_RS27520 or Q6H37_RS27585",
+        "genes": [
+          {
+            "name": "G_Q6H37_RS06920",
+            "bigg_id": "Q6H37_RS06920"
+          },
+          {
+            "name": "G_adhE",
+            "bigg_id": "adhE"
+          },
+          {
+            "name": "G_Q6H37_RS27520",
+            "bigg_id": "Q6H37_RS27520"
+          },
+          {
+            "name": "G_Q6H37_RS27585",
+            "bigg_id": "Q6H37_RS27585"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "acald_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "accoa_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "coa_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "h_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "nad_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "nadh_c",
+            "coefficient": 1
+          }
+        ],
+        "segments": {
+          "5238": {
+            "from_node_id": "5238",
+            "to_node_id": "5239",
+            "b1": null,
+            "b2": null
+          },
+          "5239": {
+            "from_node_id": "5240",
+            "to_node_id": "5239",
+            "b1": null,
+            "b2": null
+          },
+          "5240": {
+            "from_node_id": "5240",
+            "to_node_id": "5241",
+            "b1": {
+              "x": 248.9535208193376,
+              "y": 33.9374003489828
+            },
+            "b2": {
+              "x": 508.4451309321237,
+              "y": 33.9374003489828
+            }
+          },
+          "5241": {
+            "from_node_id": "5238",
+            "to_node_id": "5231",
+            "b1": {
+              "x": 236.3222277822166,
+              "y": 33.9374003489828
+            },
+            "b2": {
+              "x": -31.634787645692498,
+              "y": 33.9374003489828
+            }
+          },
+          "5244": {
+            "from_node_id": "5240",
+            "to_node_id": "5244",
+            "b1": {
+              "x": 252.9535208193376,
+              "y": 33.9374003489828
+            },
+            "b2": {
+              "x": 307.7450376668477,
+              "y": 40.87903256564422
+            }
+          },
+          "5245": {
+            "from_node_id": "5238",
+            "to_node_id": "5245",
+            "b1": {
+              "x": 232.3222277822166,
+              "y": 33.9374003489828
+            },
+            "b2": {
+              "x": 172.4228338160138,
+              "y": 40.8042586826073
+            }
+          }
+        }
+      },
+      "5219": {
+        "name": "Alcohol dehydrogenase (ethanol)",
+        "bigg_id": "ALCD2x",
+        "reversibility": true,
+        "label_x": 853.3699097998558,
+        "label_y": 90.08424712022304,
+        "gene_reaction_rule": "Q6H37_RS03495 or Q6H37_RS03850 or Q6H37_RS07545 or adhE or Q6H37_RS13220",
+        "genes": [
+          {
+            "name": "G_Q6H37_RS03495",
+            "bigg_id": "Q6H37_RS03495"
+          },
+          {
+            "name": "G_Q6H37_RS03850",
+            "bigg_id": "Q6H37_RS03850"
+          },
+          {
+            "name": "G_Q6H37_RS07545",
+            "bigg_id": "Q6H37_RS07545"
+          },
+          {
+            "name": "G_adhE",
+            "bigg_id": "adhE"
+          },
+          {
+            "name": "G_Q6H37_RS13220",
+            "bigg_id": "Q6H37_RS13220"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "acald_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "etoh_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "h_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "nad_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "nadh_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "5246": {
+            "from_node_id": "5246",
+            "to_node_id": "5247",
+            "b1": null,
+            "b2": null
+          },
+          "5247": {
+            "from_node_id": "5248",
+            "to_node_id": "5247",
+            "b1": null,
+            "b2": null
+          },
+          "5248": {
+            "from_node_id": "5246",
+            "to_node_id": "5241",
+            "b1": {
+              "x": 909.7621487592421,
+              "y": 33.9374003489828
+            },
+            "b2": {
+              "x": 625.9451309321237,
+              "y": 33.9374003489828
+            }
+          },
+          "5249": {
+            "from_node_id": "5248",
+            "to_node_id": "5249",
+            "b1": {
+              "x": 913.2590284210115,
+              "y": 33.9374003489828
+            },
+            "b2": {
+              "x": 1171.2425531329548,
+              "y": 33.9374003489828
+            }
+          },
+          "5251": {
+            "from_node_id": "5248",
+            "to_node_id": "5251",
+            "b1": {
+              "x": 917.2590284210115,
+              "y": 33.9374003489828
+            },
+            "b2": {
+              "x": 978.8190628293116,
+              "y": 40.097489725478226
+            }
+          },
+          "5252": {
+            "from_node_id": "5246",
+            "to_node_id": "5252",
+            "b1": {
+              "x": 905.7621487592421,
+              "y": 33.9374003489828
+            },
+            "b2": {
+              "x": 835.2362569352767,
+              "y": 41.40589252469749
+            }
+          }
+        }
+      },
+      "5220": {
+        "name": "Acetate kinase",
+        "bigg_id": "ACKr",
+        "reversibility": false,
+        "label_x": 205.27534649387303,
+        "label_y": -351.9039057922799,
+        "gene_reaction_rule": "Q6H37_RS22920",
+        "genes": [
+          {
+            "name": "G_Q6H37_RS22920",
+            "bigg_id": "Q6H37_RS22920"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "ac_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "actp_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "adp_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "atp_c",
+            "coefficient": 1
+          }
+        ],
+        "segments": {
+          "5253": {
+            "from_node_id": "5253",
+            "to_node_id": "5254",
+            "b1": null,
+            "b2": null
+          },
+          "5254": {
+            "from_node_id": "5255",
+            "to_node_id": "5254",
+            "b1": null,
+            "b2": null
+          },
+          "5255": {
+            "from_node_id": "5255",
+            "to_node_id": "5256",
+            "b1": {
+              "x": 283.5936295749277,
+              "y": -321.8542231750924
+            },
+            "b2": {
+              "x": 508.4451309321237,
+              "y": -321.8542231750924
+            }
+          },
+          "5256": {
+            "from_node_id": "5253",
+            "to_node_id": "5235",
+            "b1": {
+              "x": 199.59362957492772,
+              "y": -321.8542231750924
+            },
+            "b2": {
+              "x": -31.634787645692512,
+              "y": -321.8542231750924
+            }
+          },
+          "5258": {
+            "from_node_id": "5255",
+            "to_node_id": "5258",
+            "b1": {
+              "x": 287.5936295749277,
+              "y": -321.8542231750924
+            },
+            "b2": {
+              "x": 345.62958627627916,
+              "y": -322.06767104451916
+            }
+          }
+        }
+      },
+      "5221": {
+        "name": "Acetaldehyde:ferredoxin oxidoreductase",
+        "bigg_id": "ACAFDOR",
+        "reversibility": true,
+        "label_x": 409.4123550532174,
+        "label_y": -133.24807345822956,
+        "gene_reaction_rule": "Q6H37_RS09410",
+        "genes": [
+          {
+            "name": "G_Q6H37_RS09410",
+            "bigg_id": "Q6H37_RS09410"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "ac_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "acald_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "fdxo_42_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "fdxr_42_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "h2o_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "h_c",
+            "coefficient": -3
+          }
+        ],
+        "segments": {
+          "5259": {
+            "from_node_id": "5259",
+            "to_node_id": "5260",
+            "b1": null,
+            "b2": null
+          },
+          "5260": {
+            "from_node_id": "5261",
+            "to_node_id": "5260",
+            "b1": null,
+            "b2": null
+          },
+          "5261": {
+            "from_node_id": "5259",
+            "to_node_id": "5256",
+            "b1": {
+              "x": 567.1951309321237,
+              "y": -158.78501469635836
+            },
+            "b2": {
+              "x": 567.1951309321237,
+              "y": -263.1042231750924
+            }
+          },
+          "5262": {
+            "from_node_id": "5261",
+            "to_node_id": "5241",
+            "b1": {
+              "x": 567.1951309321237,
+              "y": -128.66279198743047
+            },
+            "b2": {
+              "x": 567.1951309321237,
+              "y": -35.12468884852043
+            }
+          },
+          "5263": {
+            "from_node_id": "5261",
+            "to_node_id": "5263",
+            "b1": {
+              "x": 567.1951309321237,
+              "y": -124.66279198743047
+            },
+            "b2": {
+              "x": 582.8085635761726,
+              "y": -96.6825191558168
+            }
+          },
+          "5264": {
+            "from_node_id": "5259",
+            "to_node_id": "5264",
+            "b1": {
+              "x": 567.1951309321237,
+              "y": -162.78501469635836
+            },
+            "b2": {
+              "x": 583.6569794592607,
+              "y": -189.40603692270162
+            }
+          }
+        }
+      },
+      "5222": {
+        "name": "Phosphate butyryltransferase",
+        "bigg_id": "PBUTT",
+        "reversibility": true,
+        "label_x": -199.7064224151324,
+        "label_y": 606.6600610612738,
+        "gene_reaction_rule": "Q6H37_RS26095 or ptb or Q6H37_RS05975",
+        "genes": [
+          {
+            "name": "G_Q6H37_RS26095",
+            "bigg_id": "Q6H37_RS26095"
+          },
+          {
+            "name": "G_ptb",
+            "bigg_id": "ptb"
+          },
+          {
+            "name": "G_Q6H37_RS05975",
+            "bigg_id": "Q6H37_RS05975"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "btcoa_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "butpi_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "coa_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "pi_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "5265": {
+            "from_node_id": "5266",
+            "to_node_id": "5267",
+            "b1": null,
+            "b2": null
+          },
+          "5266": {
+            "from_node_id": "5268",
+            "to_node_id": "5267",
+            "b1": null,
+            "b2": null
+          },
+          "5267": {
+            "from_node_id": "5266",
+            "to_node_id": "5265",
+            "b1": {
+              "x": -85.28630742108314,
+              "y": 647.4916166100502
+            },
+            "b2": {
+              "x": -85.28630742108314,
+              "y": 713.626255925888
+            }
+          },
+          "5268": {
+            "from_node_id": "5268",
+            "to_node_id": "5269",
+            "b1": {
+              "x": -85.28630742108314,
+              "y": 517.4469137156223
+            },
+            "b2": {
+              "x": -85.28630742108314,
+              "y": 474.2621111230824
+            }
+          }
+        }
+      },
+      "5223": {
+        "name": "Butyryl-coA reductase (NADH)",
+        "bigg_id": "BTCOARx",
+        "reversibility": true,
+        "label_x": 173.58467453495945,
+        "label_y": 824.9002427422943,
+        "gene_reaction_rule": "Q6H37_RS06920 or adhE or Q6H37_RS27520 or Q6H37_RS27585",
+        "genes": [
+          {
+            "name": "G_Q6H37_RS06920",
+            "bigg_id": "Q6H37_RS06920"
+          },
+          {
+            "name": "G_adhE",
+            "bigg_id": "adhE"
+          },
+          {
+            "name": "G_Q6H37_RS27520",
+            "bigg_id": "Q6H37_RS27520"
+          },
+          {
+            "name": "G_Q6H37_RS27585",
+            "bigg_id": "Q6H37_RS27585"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "btal_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "btcoa_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "coa_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "h_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "nad_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "nadh_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "5271": {
+            "from_node_id": "5272",
+            "to_node_id": "5273",
+            "b1": null,
+            "b2": null
+          },
+          "5272": {
+            "from_node_id": "5274",
+            "to_node_id": "5273",
+            "b1": null,
+            "b2": null
+          },
+          "5273": {
+            "from_node_id": "5274",
+            "to_node_id": "5275",
+            "b1": {
+              "x": 247.6410081135703,
+              "y": 772.376255925888
+            },
+            "b2": {
+              "x": 513.543611156733,
+              "y": 772.376255925888
+            }
+          },
+          "5274": {
+            "from_node_id": "5272",
+            "to_node_id": "5265",
+            "b1": {
+              "x": 223.44703917285216,
+              "y": 772.376255925888
+            },
+            "b2": {
+              "x": -26.536307421083137,
+              "y": 772.376255925888
+            }
+          },
+          "5277": {
+            "from_node_id": "5274",
+            "to_node_id": "5278",
+            "b1": {
+              "x": 251.6410081135703,
+              "y": 772.376255925888
+            },
+            "b2": {
+              "x": 301.44303366241365,
+              "y": 779.6997158912053
+            }
+          },
+          "5278": {
+            "from_node_id": "5272",
+            "to_node_id": "5279",
+            "b1": {
+              "x": 219.44703917285216,
+              "y": 772.376255925888
+            },
+            "b2": {
+              "x": 181.51329807707035,
+              "y": 777.3146444199697
+            }
+          }
+        }
+      },
+      "5224": {
+        "name": "Butyrate kinase",
+        "bigg_id": "BUTKr",
+        "reversibility": true,
+        "label_x": 194.29193466679538,
+        "label_y": 391.55263846683283,
+        "gene_reaction_rule": "buk",
+        "genes": [
+          {
+            "name": "G_buk",
+            "bigg_id": "buk"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "adp_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "atp_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "but_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "butpi_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "5279": {
+            "from_node_id": "5280",
+            "to_node_id": "5281",
+            "b1": null,
+            "b2": null
+          },
+          "5280": {
+            "from_node_id": "5282",
+            "to_node_id": "5281",
+            "b1": null,
+            "b2": null
+          },
+          "5282": {
+            "from_node_id": "5282",
+            "to_node_id": "5284",
+            "b1": {
+              "x": 282.3564335681626,
+              "y": 415.51211112308306
+            },
+            "b2": {
+              "x": 337.8451214620553,
+              "y": 409.8938070298698
+            }
+          },
+          "5283": {
+            "from_node_id": "5282",
+            "to_node_id": "5285",
+            "b1": {
+              "x": 278.3564335681626,
+              "y": 415.51211112308306
+            },
+            "b2": {
+              "x": 513.543611156733,
+              "y": 415.51211112308306
+            }
+          },
+          "5284": {
+            "from_node_id": "5280",
+            "to_node_id": "5269",
+            "b1": {
+              "x": 194.35643356816257,
+              "y": 415.51211112308306
+            },
+            "b2": {
+              "x": -26.536307421083137,
+              "y": 415.51211112308306
+            }
+          }
+        }
+      },
+      "5226": {
+        "name": "Butyraldehyde:ferredoxin oxidoreductase",
+        "bigg_id": "BUTAFDOR",
+        "reversibility": true,
+        "label_x": 396.7348648188424,
+        "label_y": 603.9588410002466,
+        "gene_reaction_rule": "Q6H37_RS09410",
+        "genes": [
+          {
+            "name": "G_Q6H37_RS09410",
+            "bigg_id": "Q6H37_RS09410"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "btal_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "but_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "fdxo_42_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "fdxr_42_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "h2o_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "h_c",
+            "coefficient": -3
+          }
+        ],
+        "segments": {
+          "5293": {
+            "from_node_id": "5294",
+            "to_node_id": "5295",
+            "b1": null,
+            "b2": null
+          },
+          "5294": {
+            "from_node_id": "5296",
+            "to_node_id": "5295",
+            "b1": null,
+            "b2": null
+          },
+          "5295": {
+            "from_node_id": "5296",
+            "to_node_id": "5275",
+            "b1": {
+              "x": 572.293611156733,
+              "y": 611.4822364286697
+            },
+            "b2": {
+              "x": 572.293611156733,
+              "y": 715.722447332138
+            }
+          },
+          "5296": {
+            "from_node_id": "5294",
+            "to_node_id": "5285",
+            "b1": {
+              "x": 572.293611156733,
+              "y": 570.2125581976982
+            },
+            "b2": {
+              "x": 572.293611156733,
+              "y": 474.2621111230824
+            }
+          },
+          "5297": {
+            "from_node_id": "5296",
+            "to_node_id": "5298",
+            "b1": {
+              "x": 572.293611156733,
+              "y": 615.4822364286697
+            },
+            "b2": {
+              "x": 579.4601172792082,
+              "y": 636.0955850059663
+            }
+          },
+          "5298": {
+            "from_node_id": "5294",
+            "to_node_id": "5299",
+            "b1": {
+              "x": 572.293611156733,
+              "y": 566.2125581976982
+            },
+            "b2": {
+              "x": 577.6555973947975,
+              "y": 539.0890743720997
+            }
+          }
+        }
+      },
+      "5227": {
+        "name": "Alcohol dehydrogenase (butanol)",
+        "bigg_id": "ALCD4",
+        "reversibility": true,
+        "label_x": 866.4811783095774,
+        "label_y": 825.3549546563568,
+        "gene_reaction_rule": "Q6H37_RS03495 or Q6H37_RS03850 or Q6H37_RS07545 or adhE or Q6H37_RS13220",
+        "genes": [
+          {
+            "name": "G_Q6H37_RS03495",
+            "bigg_id": "Q6H37_RS03495"
+          },
+          {
+            "name": "G_Q6H37_RS03850",
+            "bigg_id": "Q6H37_RS03850"
+          },
+          {
+            "name": "G_Q6H37_RS07545",
+            "bigg_id": "Q6H37_RS07545"
+          },
+          {
+            "name": "G_adhE",
+            "bigg_id": "adhE"
+          },
+          {
+            "name": "G_Q6H37_RS13220",
+            "bigg_id": "Q6H37_RS13220"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "btal_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "btoh_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "h_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "nad_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "nadh_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "5299": {
+            "from_node_id": "5300",
+            "to_node_id": "5301",
+            "b1": null,
+            "b2": null
+          },
+          "5300": {
+            "from_node_id": "5302",
+            "to_node_id": "5301",
+            "b1": null,
+            "b2": null
+          },
+          "5301": {
+            "from_node_id": "5300",
+            "to_node_id": "5275",
+            "b1": {
+              "x": 901.0993568979104,
+              "y": 772.376255925888
+            },
+            "b2": {
+              "x": 631.043611156733,
+              "y": 772.376255925888
+            }
+          },
+          "5302": {
+            "from_node_id": "5302",
+            "to_node_id": "5303",
+            "b1": {
+              "x": 922.7919903755206,
+              "y": 772.376255925888
+            },
+            "b2": {
+              "x": 1176.3410333575641,
+              "y": 772.376255925888
+            }
+          },
+          "5304": {
+            "from_node_id": "5302",
+            "to_node_id": "5305",
+            "b1": {
+              "x": 926.7919903755206,
+              "y": 772.376255925888
+            },
+            "b2": {
+              "x": 978.4542709307955,
+              "y": 778.6949992402784
+            }
+          },
+          "5305": {
+            "from_node_id": "5300",
+            "to_node_id": "5306",
+            "b1": {
+              "x": 897.0993568979104,
+              "y": 772.376255925888
+            },
+            "b2": {
+              "x": 854.6909157208139,
+              "y": 776.3036988808088
+            }
+          }
+        }
+      }
+    },
+    "nodes": {
+      "5158": {
+        "node_type": "multimarker",
+        "x": 124.08372592926025,
+        "y": 1233.6012573242188
+      },
+      "5159": {
+        "node_type": "midmarker",
+        "x": 134.08372592926025,
+        "y": 1233.6012573242188
+      },
+      "5160": {
+        "node_type": "multimarker",
+        "x": 144.08372592926025,
+        "y": 1233.6012573242188
+      },
+      "5163": {
+        "node_type": "metabolite",
+        "x": -15.916274070739746,
+        "y": 1233.6012573242188,
+        "bigg_id": "hxcoa_c",
+        "name": "Hexanoyl-CoA",
+        "label_x": 4.083725929260254,
+        "label_y": 1213.6012573242188,
+        "node_is_primary": true
+      },
+      "5165": {
+        "node_type": "metabolite",
+        "x": 284.08372592926025,
+        "y": 1233.6012573242188,
+        "bigg_id": "hxpi_c",
+        "name": "Hexanoyl-P",
+        "label_x": 304.08372592926025,
+        "label_y": 1213.6012573242188,
+        "node_is_primary": true
+      },
+      "5167": {
+        "node_type": "metabolite",
+        "x": 134.08372592926025,
+        "y": 1183.6012573242188,
+        "bigg_id": "pi_c",
+        "name": "Pi",
+        "label_x": 154.08372592926025,
+        "label_y": 1163.6012573242188,
+        "node_is_primary": false
+      },
+      "5169": {
+        "node_type": "metabolite",
+        "x": 134.08372592926025,
+        "y": 1283.6012573242188,
+        "bigg_id": "coa_c",
+        "name": "CoA",
+        "label_x": 154.08372592926025,
+        "label_y": 1263.6012573242188,
+        "node_is_primary": false
+      },
+      "5172": {
+        "node_type": "multimarker",
+        "x": 424.08372592926025,
+        "y": 1233.6012573242188
+      },
+      "5173": {
+        "node_type": "midmarker",
+        "x": 434.08372592926025,
+        "y": 1233.6012573242188
+      },
+      "5174": {
+        "node_type": "multimarker",
+        "x": 444.08372592926025,
+        "y": 1233.6012573242188
+      },
+      "5178": {
+        "node_type": "metabolite",
+        "x": 584.0837259292603,
+        "y": 1233.6012573242188,
+        "bigg_id": "hxa_c",
+        "name": "Hexanoate",
+        "label_x": 604.0837259292603,
+        "label_y": 1213.6012573242188,
+        "node_is_primary": true
+      },
+      "5180": {
+        "node_type": "metabolite",
+        "x": 434.08372592926025,
+        "y": 1183.6012573242188,
+        "bigg_id": "adp_c",
+        "name": "ADP",
+        "label_x": 454.08372592926025,
+        "label_y": 1163.6012573242188,
+        "node_is_primary": false
+      },
+      "5182": {
+        "node_type": "metabolite",
+        "x": 434.08372592926025,
+        "y": 1283.6012573242188,
+        "bigg_id": "atp_c",
+        "name": "ATP",
+        "label_x": 454.08372592926025,
+        "label_y": 1263.6012573242188,
+        "node_is_primary": false
+      },
+      "5185": {
+        "node_type": "multimarker",
+        "x": 74.08372592926025,
+        "y": 1358.6012573242188
+      },
+      "5186": {
+        "node_type": "midmarker",
+        "x": 84.08372592926025,
+        "y": 1358.6012573242188
+      },
+      "5187": {
+        "node_type": "multimarker",
+        "x": 94.08372592926025,
+        "y": 1358.6012573242188
+      },
+      "5191": {
+        "node_type": "metabolite",
+        "x": 184.08372592926025,
+        "y": 1483.6012573242188,
+        "bigg_id": "hxal_c",
+        "name": "Hexaldehyde",
+        "label_x": 204.08372592926025,
+        "label_y": 1463.6012573242188,
+        "node_is_primary": true
+      },
+      "5193": {
+        "node_type": "metabolite",
+        "x": -95.91627407073975,
+        "y": 1338.6012573242188,
+        "bigg_id": "h_c",
+        "name": "H+",
+        "label_x": -75.91627407073975,
+        "label_y": 1318.6012573242188,
+        "node_is_primary": false
+      },
+      "5195": {
+        "node_type": "metabolite",
+        "x": -95.91627407073975,
+        "y": 1378.6012573242188,
+        "bigg_id": "nadh_c",
+        "name": "NADH",
+        "label_x": -75.91627407073975,
+        "label_y": 1358.6012573242188,
+        "node_is_primary": false
+      },
+      "5197": {
+        "node_type": "metabolite",
+        "x": 64.08372592926025,
+        "y": 1338.6012573242188,
+        "bigg_id": "coa_c",
+        "name": "CoA",
+        "label_x": 84.08372592926025,
+        "label_y": 1318.6012573242188,
+        "node_is_primary": false
+      },
+      "5199": {
+        "node_type": "metabolite",
+        "x": 64.08372592926025,
+        "y": 1378.6012573242188,
+        "bigg_id": "nad_c",
+        "name": "NAD+",
+        "label_x": 84.08372592926025,
+        "label_y": 1358.6012573242188,
+        "node_is_primary": false
+      },
+      "5202": {
+        "node_type": "multimarker",
+        "x": 349.08372592926025,
+        "y": 1483.6012573242188
+      },
+      "5203": {
+        "node_type": "midmarker",
+        "x": 359.08372592926025,
+        "y": 1483.6012573242188
+      },
+      "5204": {
+        "node_type": "multimarker",
+        "x": 369.08372592926025,
+        "y": 1483.6012573242188
+      },
+      "5208": {
+        "node_type": "metabolite",
+        "x": 534.0837259292603,
+        "y": 1483.6012573242188,
+        "bigg_id": "hxoh_c",
+        "name": "Hexanol",
+        "label_x": 554.0837259292603,
+        "label_y": 1463.6012573242188,
+        "node_is_primary": true
+      },
+      "5210": {
+        "node_type": "metabolite",
+        "x": 359.08372592926025,
+        "y": 1433.6012573242188,
+        "bigg_id": "h_c",
+        "name": "H+",
+        "label_x": 379.08372592926025,
+        "label_y": 1413.6012573242188,
+        "node_is_primary": false
+      },
+      "5212": {
+        "node_type": "metabolite",
+        "x": 359.08372592926025,
+        "y": 1533.6012573242188,
+        "bigg_id": "nadh_c",
+        "name": "NADH",
+        "label_x": 379.08372592926025,
+        "label_y": 1513.6012573242188,
+        "node_is_primary": false
+      },
+      "5214": {
+        "node_type": "metabolite",
+        "x": 439.08372592926025,
+        "y": 1533.6012573242188,
+        "bigg_id": "nad_c",
+        "name": "NAD+",
+        "label_x": 459.08372592926025,
+        "label_y": 1513.6012573242188,
+        "node_is_primary": false
+      },
+      "5217": {
+        "node_type": "multimarker",
+        "x": 374.08372592926025,
+        "y": 1358.6012573242188
+      },
+      "5218": {
+        "node_type": "midmarker",
+        "x": 384.08372592926025,
+        "y": 1358.6012573242188
+      },
+      "5219": {
+        "node_type": "multimarker",
+        "x": 394.08372592926025,
+        "y": 1358.6012573242188
+      },
+      "5224": {
+        "node_type": "metabolite",
+        "x": 644.0837259292603,
+        "y": 1328.6012573242188,
+        "bigg_id": "fdxr_42_c",
+        "name": "Fd_red",
+        "label_x": 664.0837259292603,
+        "label_y": 1308.6012573242188,
+        "node_is_primary": false
+      },
+      "5226": {
+        "node_type": "metabolite",
+        "x": 644.0837259292603,
+        "y": 1388.6012573242188,
+        "bigg_id": "h_c",
+        "name": "H+",
+        "label_x": 664.0837259292603,
+        "label_y": 1368.6012573242188,
+        "node_is_primary": false
+      },
+      "5228": {
+        "node_type": "metabolite",
+        "x": 464.08372592926025,
+        "y": 1328.6012573242188,
+        "bigg_id": "fdxo_42_c",
+        "name": "Fd_ox",
+        "label_x": 484.08372592926025,
+        "label_y": 1308.6012573242188,
+        "node_is_primary": false
+      },
+      "5230": {
+        "node_type": "metabolite",
+        "x": 464.08372592926025,
+        "y": 1388.6012573242188,
+        "bigg_id": "h2o_c",
+        "name": "H2O",
+        "label_x": 484.08372592926025,
+        "label_y": 1368.6012573242188,
+        "node_is_primary": false
+      },
+      "5231": {
+        "node_type": "metabolite",
+        "x": -90.38478764569251,
+        "y": 33.9374003489828,
+        "bigg_id": "accoa_c",
+        "name": "Acetyl-CoA",
+        "label_x": -126.33061894452064,
+        "label_y": 79.95772600968837,
+        "node_is_primary": true
+      },
+      "5232": {
+        "node_type": "multimarker",
+        "x": -90.38478764569251,
+        "y": -124.99934146016727
+      },
+      "5233": {
+        "node_type": "midmarker",
+        "x": -90.38478764569251,
+        "y": -148.43173550911717
+      },
+      "5234": {
+        "node_type": "multimarker",
+        "x": -90.38478764569251,
+        "y": -178.08265599586747
+      },
+      "5235": {
+        "node_type": "metabolite",
+        "x": -90.38478764569251,
+        "y": -321.8542231750924,
+        "bigg_id": "actp_c",
+        "name": "Acetyl phosphate",
+        "label_x": -121.35545643841712,
+        "label_y": -360.41180984501426,
+        "node_is_primary": true
+      },
+      "5238": {
+        "node_type": "multimarker",
+        "x": 278.3222277822166,
+        "y": 33.9374003489828
+      },
+      "5239": {
+        "node_type": "midmarker",
+        "x": 241.59362957492772,
+        "y": 33.9374003489828
+      },
+      "5240": {
+        "node_type": "multimarker",
+        "x": 206.9535208193376,
+        "y": 33.9374003489828
+      },
+      "5241": {
+        "node_type": "metabolite",
+        "x": 567.1951309321237,
+        "y": 33.9374003489828,
+        "bigg_id": "acald_c",
+        "name": "Acetaldehyde",
+        "label_x": 529.3951309321236,
+        "label_y": 73.93740034898278,
+        "node_is_primary": true
+      },
+      "5244": {
+        "node_type": "metabolite",
+        "x": 316.7219631577324,
+        "y": -29.13866026074885,
+        "bigg_id": "nad_c",
+        "name": "Nicotinamide adenine dinucleotide",
+        "label_x": 293.03377651222456,
+        "label_y": -50.50406438977717,
+        "node_is_primary": false
+      },
+      "5245": {
+        "node_type": "metabolite",
+        "x": 162.880790550386,
+        "y": -29.13866026074885,
+        "bigg_id": "nadh_c",
+        "name": "Nicotinamide adenine dinucleotide - reduced",
+        "label_x": 128.81742995468278,
+        "label_y": -51.32704145581718,
+        "node_is_primary": false
+      },
+      "5246": {
+        "node_type": "multimarker",
+        "x": 951.7621487592421,
+        "y": 33.9374003489828
+      },
+      "5247": {
+        "node_type": "midmarker",
+        "x": 912.0972047217308,
+        "y": 33.9374003489828
+      },
+      "5248": {
+        "node_type": "multimarker",
+        "x": 871.2590284210115,
+        "y": 33.9374003489828
+      },
+      "5249": {
+        "node_type": "metabolite",
+        "x": 1229.9925531329548,
+        "y": 33.9374003489828,
+        "bigg_id": "etoh_c",
+        "name": "Ethanol",
+        "label_x": 1197.5925531329547,
+        "label_y": 73.9374003489828,
+        "node_is_primary": true
+      },
+      "5251": {
+        "node_type": "metabolite",
+        "x": 992.5819853054657,
+        "y": -29.13866026074885,
+        "bigg_id": "nad_c",
+        "name": "Nicotinamide adenine dinucleotide",
+        "label_x": 968.0658109890594,
+        "label_y": -50.40715009839539,
+        "node_is_primary": false
+      },
+      "5252": {
+        "node_type": "metabolite",
+        "x": 832.6811498335354,
+        "y": -29.13866026074885,
+        "bigg_id": "nadh_c",
+        "name": "Nicotinamide adenine dinucleotide - reduced",
+        "label_x": 801.9320592573637,
+        "label_y": -47.9294918266058,
+        "node_is_primary": false
+      },
+      "5253": {
+        "node_type": "multimarker",
+        "x": 241.59362957492772,
+        "y": -321.8542231750924
+      },
+      "5254": {
+        "node_type": "midmarker",
+        "x": 241.59362957492772,
+        "y": -321.8542231750924
+      },
+      "5255": {
+        "node_type": "multimarker",
+        "x": 241.59362957492772,
+        "y": -321.8542231750924
+      },
+      "5256": {
+        "node_type": "metabolite",
+        "x": 567.1951309321237,
+        "y": -321.8542231750924,
+        "bigg_id": "ac_c",
+        "name": "Acetate",
+        "label_x": 548.9019851801705,
+        "label_y": -355.43155471806114,
+        "node_is_primary": true
+      },
+      "5258": {
+        "node_type": "metabolite",
+        "x": 368.6524644223929,
+        "y": -388.7985453222429,
+        "bigg_id": "atp_c",
+        "name": "ATP C10H12N5O13P3",
+        "label_x": 344.96925214211944,
+        "label_y": -412.6465677831804,
+        "node_is_primary": false
+      },
+      "5259": {
+        "node_type": "multimarker",
+        "x": 567.1951309321237,
+        "y": -116.78501469635836
+      },
+      "5260": {
+        "node_type": "midmarker",
+        "x": 567.1951309321237,
+        "y": -143.2480810876241
+      },
+      "5261": {
+        "node_type": "multimarker",
+        "x": 567.1951309321237,
+        "y": -170.66279198743047
+      },
+      "5263": {
+        "node_type": "metabolite",
+        "x": 646.7069131968816,
+        "y": -66.68146224527294,
+        "bigg_id": "fdxo_42_c",
+        "name": "Ferredoxin (oxidized form 4:2)",
+        "label_x": 637.7323038218816,
+        "label_y": -92.30953689126903,
+        "node_is_primary": false
+      },
+      "5264": {
+        "node_type": "metabolite",
+        "x": 649.9180954302082,
+        "y": -213.74791462933482,
+        "bigg_id": "fdxr_42_c",
+        "name": "Ferredoxin (reduced form 4:2)",
+        "label_x": 648.38388522513,
+        "label_y": -231.10886128460825,
+        "node_is_primary": false
+      },
+      "5265": {
+        "node_type": "metabolite",
+        "x": -85.28630742108314,
+        "y": 772.376255925888,
+        "bigg_id": "btcoa_c",
+        "name": "Butanoyl-CoA",
+        "label_x": -119.32004078900306,
+        "label_y": 818.9220933282318,
+        "node_is_primary": true
+      },
+      "5266": {
+        "node_type": "multimarker",
+        "x": -85.28630742108314,
+        "y": 605.4916166100502
+      },
+      "5267": {
+        "node_type": "midmarker",
+        "x": -85.28630742108314,
+        "y": 582.4692651628363
+      },
+      "5268": {
+        "node_type": "multimarker",
+        "x": -85.28630742108314,
+        "y": 559.4469137156223
+      },
+      "5269": {
+        "node_type": "metabolite",
+        "x": -85.28630742108314,
+        "y": 415.51211112308306,
+        "bigg_id": "butpi_c",
+        "name": "Butanoyl phosphate",
+        "label_x": -120.4553056625077,
+        "label_y": 383.72472708987993,
+        "node_is_primary": true
+      },
+      "5272": {
+        "node_type": "multimarker",
+        "x": 265.44703917285216,
+        "y": 772.376255925888
+      },
+      "5273": {
+        "node_type": "midmarker",
+        "x": 236.35643356816257,
+        "y": 772.376255925888
+      },
+      "5274": {
+        "node_type": "multimarker",
+        "x": 205.6410081135703,
+        "y": 772.376255925888
+      },
+      "5275": {
+        "node_type": "metabolite",
+        "x": 572.293611156733,
+        "y": 772.376255925888,
+        "bigg_id": "btal_c",
+        "name": "Butanal C4H8O",
+        "label_x": 539.8936111567331,
+        "label_y": 812.376255925888,
+        "node_is_primary": true
+      },
+      "5278": {
+        "node_type": "metabolite",
+        "x": 312.5135475067241,
+        "y": 709.9823850241746,
+        "bigg_id": "nad_c",
+        "name": "Nicotinamide adenine dinucleotide",
+        "label_x": 289.169782247935,
+        "label_y": 689.2130979147996,
+        "node_is_primary": false
+      },
+      "5279": {
+        "node_type": "metabolite",
+        "x": 160.31354938381142,
+        "y": 709.9823850241746,
+        "bigg_id": "nadh_c",
+        "name": "Nicotinamide adenine dinucleotide - reduced",
+        "label_x": 127.40923877590127,
+        "label_y": 688.3304685202684,
+        "node_is_primary": false
+      },
+      "5280": {
+        "node_type": "multimarker",
+        "x": 236.35643356816257,
+        "y": 415.51211112308306
+      },
+      "5281": {
+        "node_type": "midmarker",
+        "x": 236.35643356816257,
+        "y": 415.51211112308306
+      },
+      "5282": {
+        "node_type": "multimarker",
+        "x": 236.35643356816257,
+        "y": 415.51211112308306
+      },
+      "5284": {
+        "node_type": "metabolite",
+        "x": 351.5296526508399,
+        "y": 340.6421203634556,
+        "bigg_id": "atp_c",
+        "name": "ATP C10H12N5O13P3",
+        "label_x": 326.8007708149024,
+        "label_y": 317.06506347869,
+        "node_is_primary": false
+      },
+      "5285": {
+        "node_type": "metabolite",
+        "x": 572.293611156733,
+        "y": 415.51211112308306,
+        "bigg_id": "but_c",
+        "name": "Butyrate (n-C4:0)",
+        "label_x": 549.3280960200143,
+        "label_y": 384.9087480859737,
+        "node_is_primary": true
+      },
+      "5294": {
+        "node_type": "multimarker",
+        "x": 572.293611156733,
+        "y": 612.2125581976982
+      },
+      "5295": {
+        "node_type": "midmarker",
+        "x": 572.293611156733,
+        "y": 591.7176910979028
+      },
+      "5296": {
+        "node_type": "multimarker",
+        "x": 572.293611156733,
+        "y": 569.4822364286697
+      },
+      "5298": {
+        "node_type": "metabolite",
+        "x": 643.8744241832097,
+        "y": 664.9722116454666,
+        "bigg_id": "fdxo_42_c",
+        "name": "Ferredoxin (oxidized form 4:2)",
+        "label_x": 649.0403787730535,
+        "label_y": 649.0864694579666,
+        "node_is_primary": false
+      },
+      "5299": {
+        "node_type": "metabolite",
+        "x": 645.3784065378419,
+        "y": 519.1721563932849,
+        "bigg_id": "fdxr_42_c",
+        "name": "Ferredoxin (reduced form 4:2)",
+        "label_x": 652.8138008249513,
+        "label_y": 504.0428839323474,
+        "node_is_primary": false
+      },
+      "5300": {
+        "node_type": "multimarker",
+        "x": 943.0993568979104,
+        "y": 772.376255925888
+      },
+      "5301": {
+        "node_type": "midmarker",
+        "x": 911.9457168837962,
+        "y": 772.376255925888
+      },
+      "5302": {
+        "node_type": "multimarker",
+        "x": 880.7919903755206,
+        "y": 772.376255925888
+      },
+      "5303": {
+        "node_type": "metabolite",
+        "x": 1235.0910333575641,
+        "y": 772.376255925888,
+        "bigg_id": "btoh_c",
+        "name": "Butanol",
+        "label_x": 1202.6910333575643,
+        "label_y": 812.376255925888,
+        "node_is_primary": true
+      },
+      "5305": {
+        "node_type": "metabolite",
+        "x": 994.6295343780735,
+        "y": 709.9823850241746,
+        "bigg_id": "nad_c",
+        "name": "Nicotinamide adenine dinucleotide",
+        "label_x": 969.8988825226047,
+        "label_y": 691.7346433249559,
+        "node_is_primary": false
+      },
+      "5306": {
+        "node_type": "metabolite",
+        "x": 830.5135331426721,
+        "y": 709.9823850241746,
+        "bigg_id": "nadh_c",
+        "name": "Nicotinamide adenine dinucleotide - reduced",
+        "label_x": 798.113533142672,
+        "label_y": 690.9781125632371,
+        "node_is_primary": false
+      }
+    },
+    "text_labels": {
+      "5000": {
+        "x": -187.57801055908203,
+        "y": -477.165714263916,
+        "text": "> Ethanol 생산 예상 경로",
+        "font_size": 30,
+        "font_family": "sans-serif",
+        "font_weight": "bold",
+        "font_style": "italic"
+      },
+      "5078": {
+        "x": -201.64700031280518,
+        "y": 266.33892822265625,
+        "text": "> Butanol 생산 경로",
+        "font_size": 30,
+        "font_family": "sans-serif",
+        "font_weight": "bold",
+        "font_style": "italic"
+      },
+      "5156": {
+        "x": -45.916274070739746,
+        "y": 1183.6012573242188,
+        "text": "> Hexanol 생산 경로"
+      },
+      "5232": {
+        "x": -65.91627407073975,
+        "y": 1348.6012573242188,
+        "text": "Direct"
+      },
+      "5233": {
+        "x": 614.0837259292603,
+        "y": 1418.6012573242188,
+        "text": "Indirect"
+      },
+      "5234": {
+        "x": -208.84963989257812,
+        "y": -532.0149250030518,
+        "text": "Alcohol Production Pathways (Direct & Indirect)",
+        "font_size": 40,
+        "font_family": "sans-serif",
+        "font_weight": "bold",
+        "font_style": "italic"
+      },
+      "5237": {
+        "x": 1333.2427597045898,
+        "y": 45.38997459411621,
+        "text": "Direct",
+        "font_size": 30,
+        "font_family": "sans-serif",
+        "font_weight": "bold",
+        "font_style": "italic"
+      },
+      "5239": {
+        "x": 802.4081649780273,
+        "y": -157.11208534240723,
+        "text": "Indirect",
+        "font_size": 30,
+        "font_family": "sans-serif",
+        "font_weight": "bold",
+        "font_style": "italic"
+      }
+    },
+    "canvas": {
+      "x": -235.44982147216797,
+      "y": -599.6627349853516,
+      "width": 1854.8474044799805,
+      "height": 2224.833999633789
+    }
+  }
+]

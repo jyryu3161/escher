@@ -630,7 +630,11 @@ function calculateNewMetaboliteCoordinates (met, primaryIndex, mainAxis, center,
 
 export function newTextLabel (largestIds, text, coords) {
   const newId = String(++largestIds.text_labels)
-  const newLabel = { text: text, x: coords.x, y: coords.y }
+  const newLabel = {
+    text: text, x: coords.x, y: coords.y,
+    font_size: 50, font_family: 'sans-serif',
+    font_weight: 'bold', font_style: 'italic'
+  }
   return { id: newId, label: newLabel }
 }
 

@@ -1,5 +1,16 @@
 import PlacedDiv from './PlacedDiv'
 
+const FONT_FAMILIES = [
+  { value: 'sans-serif', label: 'Sans-serif' },
+  { value: 'serif', label: 'Serif' },
+  { value: 'monospace', label: 'Monospace' },
+  { value: 'Arial', label: 'Arial' },
+  { value: 'Georgia', label: 'Georgia' },
+  { value: 'Courier New', label: 'Courier New' }
+]
+
+const FONT_SIZES = [20, 30, 40, 50, 60, 80, 100, 150]
+
 /**
  * TextEditInput
  */
@@ -9,6 +20,57 @@ export default class TextEditInput {
           .attr('id', 'text-edit-input')
     this.placedDiv = PlacedDiv(div, map)
     this.placedDiv.hide()
+
+    // Style toolbar
+    const toolbar = div.append('div')
+          .attr('class', 'style-toolbar')
+
+    // Font family select
+    this.fontFamilySelect = toolbar.append('select')
+      .attr('class', 'style-font-family')
+      .attr('title', 'Font family')
+    FONT_FAMILIES.forEach(f => {
+      this.fontFamilySelect.append('option')
+        .attr('value', f.value)
+        .text(f.label)
+    })
+    this.fontFamilySelect.on('change', () => this._onStyleChange())
+
+    // Font size select
+    this.fontSizeSelect = toolbar.append('select')
+      .attr('class', 'style-font-size')
+      .attr('title', 'Font size')
+    FONT_SIZES.forEach(s => {
+      this.fontSizeSelect.append('option')
+        .attr('value', s)
+        .text(s + 'px')
+    })
+    this.fontSizeSelect.on('change', () => this._onStyleChange())
+
+    // Bold toggle
+    this.boldBtn = toolbar.append('button')
+      .attr('class', 'style-bold')
+      .attr('title', 'Bold')
+      .text('B')
+    this.boldBtn.on('click', () => {
+      const isActive = this.boldBtn.classed('active')
+      this.boldBtn.classed('active', !isActive)
+      this._onStyleChange()
+    })
+
+    // Italic toggle
+    this.italicBtn = toolbar.append('button')
+      .attr('class', 'style-italic')
+      .attr('title', 'Italic')
+      .text('I')
+    this.italicBtn.node().style.fontStyle = 'italic'
+    this.italicBtn.on('click', () => {
+      const isActive = this.italicBtn.classed('active')
+      this.italicBtn.classed('active', !isActive)
+      this._onStyleChange()
+    })
+
+    // Text input
     this.input = div.append('input')
 
     this.map = map
@@ -73,9 +135,10 @@ export default class TextEditInput {
     // set the current target
     this.activeTarget = { target, coords }
 
-    // set the new value
+    // set the new value and style controls
     target.each(d => {
       this.input.node().value = d.text
+      this._syncToolbar(d)
     })
 
     // place the input
@@ -85,17 +148,20 @@ export default class TextEditInput {
     // escape key
     this.clearEscape = this.map.key_manager.addEscapeListener(() => {
       this._acceptChanges(target)
-      this.hide()
+      if (this.is_visible()) this.hide()
     }, true)
     // enter key
     this.clearEnter = this.map.key_manager.addEnterListener(() => {
       this._acceptChanges(target)
-      this.hide()
+      if (this.is_visible()) this.hide()
     }, true)
   }
 
   hide () {
     this.isNew = false
+
+    // explicitly release focus before hiding
+    this.input.node().blur()
 
     // hide the input
     this.placedDiv.hide()
@@ -110,14 +176,43 @@ export default class TextEditInput {
     // clear enter
     if (this.clearEnter) this.clearEnter()
     this.clearEnter = null
-    // turn off click listener
-    // this.map.sel.on('click.', null)
+  }
+
+  _syncToolbar (d) {
+    // Set toolbar controls to match label's current style
+    this.fontFamilySelect.node().value = d.font_family || 'sans-serif'
+    this.fontSizeSelect.node().value = d.font_size || 50
+    this.boldBtn.classed('active', (d.font_weight || 'bold') === 'bold')
+    this.italicBtn.classed('active', (d.font_style || 'italic') === 'italic')
+  }
+
+  _onStyleChange () {
+    if (!this.activeTarget) return
+
+    const styleProps = {
+      font_family: this.fontFamilySelect.node().value,
+      font_size: parseInt(this.fontSizeSelect.node().value, 10),
+      font_weight: this.boldBtn.classed('active') ? 'bold' : 'normal',
+      font_style: this.italicBtn.classed('active') ? 'italic' : 'normal'
+    }
+
+    this.activeTarget.target.each(d => {
+      this.map.edit_text_label_style(d.text_label_id, styleProps)
+    })
   }
 
   _acceptChanges (target) {
     const value = this.input.node().value
     const wasNew = this.isNew
     const shouldKeepMode = this.keepTextMode
+
+    // Clear state BEFORE switch_to_brush_mode to prevent reentrant calls.
+    // _setMode('brush') triggers togglePanDrag → goTo → zoom event → go_to
+    // callback, which checks activeTarget and would call _acceptChanges again,
+    // causing infinite recursion / stack overflow.
+    this.isNew = false
+    this.activeTarget = null
+
     if (value === '') {
       // Delete the label
       target.each(d => {
@@ -129,7 +224,7 @@ export default class TextEditInput {
       // Set the text
       const textLabelIds = []
       target.each(d => {
-        this.map.edit_text_label(d.text_label_id, value, true, this.isNew)
+        this.map.edit_text_label(d.text_label_id, value, true, wasNew)
         textLabelIds.push(d.text_label_id)
       })
     }

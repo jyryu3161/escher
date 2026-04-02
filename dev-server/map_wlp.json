@@ -1,0 +1,1207 @@
+[
+  {
+    "map_name": "Wood-Ljungdahl Pathway",
+    "map_id": "wlp_pathway",
+    "map_description": "\nLast Modified Wed Apr 01 2026 15:12:21 GMT+0900 (한국 표준시)",
+    "homepage": "https://escher.github.io",
+    "schema": "https://escher.github.io/escher/jsonschema/1-0-0#"
+  },
+  {
+    "reactions": {
+      "1016": {
+        "name": "Formate-tetrahydrofolate ligase",
+        "bigg_id": "FTHFLi",
+        "reversibility": true,
+        "label_x": 244.09007693820536,
+        "label_y": 388.5368194580078,
+        "gene_reaction_rule": "Q6H37_RS05145 or Q6H37_RS27295",
+        "genes": [
+          {
+            "bigg_id": "Q6H37_RS05145",
+            "name": "G_Q6H37_RS05145"
+          },
+          {
+            "bigg_id": "Q6H37_RS27295",
+            "name": "G_Q6H37_RS27295"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "10fthf_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "adp_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "atp_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "for_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "pi_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "thf_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "1024": {
+            "from_node_id": "1019",
+            "to_node_id": "1023",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 366.1097106933594
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 475.85255432128906
+            }
+          },
+          "1026": {
+            "from_node_id": "1025",
+            "to_node_id": "1017",
+            "b1": {
+              "x": 468.0242711296585,
+              "y": 408.37860214895665
+            },
+            "b2": {
+              "x": 492.9293619300205,
+              "y": 340.7916886255372
+            }
+          },
+          "1028": {
+            "from_node_id": "1027",
+            "to_node_id": "1017",
+            "b1": {
+              "x": 466.94922462463387,
+              "y": 373.6635055541992
+            },
+            "b2": {
+              "x": 488.9133783456749,
+              "y": 352.09973336590906
+            }
+          }
+        }
+      },
+      "1033": {
+        "name": "Methenyltetrahydrofolate cyclohydrolase",
+        "bigg_id": "MTHFC",
+        "reversibility": false,
+        "label_x": 245.30117431640628,
+        "label_y": 595.5274047851562,
+        "gene_reaction_rule": "Q6H37_RS27285 or Q6H37_RS27290",
+        "genes": [
+          {
+            "bigg_id": "Q6H37_RS27290",
+            "name": "G_Q6H37_RS27290"
+          },
+          {
+            "bigg_id": "Q6H37_RS27285",
+            "name": "G_Q6H37_RS27285"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "10fthf_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "h2o_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "h_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "methf_c",
+            "coefficient": 1
+          }
+        ],
+        "segments": {
+          "1039": {
+            "from_node_id": "1023",
+            "to_node_id": "1034",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 535.8525543212891
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 581.705078125
+            }
+          },
+          "1041": {
+            "from_node_id": "1036",
+            "to_node_id": "1040",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 624.1474609375
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 670
+            }
+          },
+          "1045": {
+            "from_node_id": "1036",
+            "to_node_id": "1044",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 585.1474609375
+            },
+            "b2": {
+              "x": 433.95629839385106,
+              "y": 615.0584630819031
+            }
+          }
+        }
+      },
+      "1046": {
+        "name": "Methylenetetrahydrofolate dehydrogenase (NADP)",
+        "bigg_id": "MTHFD",
+        "reversibility": false,
+        "label_x": 241.14479403100813,
+        "label_y": 811.6761474609375,
+        "gene_reaction_rule": "Q6H37_RS27285",
+        "genes": [
+          {
+            "bigg_id": "Q6H37_RS27285",
+            "name": "G_Q6H37_RS27285"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "methf_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "mlthf_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "nadp_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "nadph_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "1050": {
+            "from_node_id": "1047",
+            "to_node_id": "1048",
+            "b1": null,
+            "b2": null
+          },
+          "1051": {
+            "from_node_id": "1048",
+            "to_node_id": "1049",
+            "b1": null,
+            "b2": null
+          },
+          "1052": {
+            "from_node_id": "1040",
+            "to_node_id": "1047",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 730
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 754.8267822265625
+            }
+          },
+          "1054": {
+            "from_node_id": "1049",
+            "to_node_id": "1053",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 844.0895385742188
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 870
+            }
+          },
+          "1056": {
+            "from_node_id": "1055",
+            "to_node_id": "1047",
+            "b1": {
+              "x": 418.2158413216031,
+              "y": 754.9070621219088
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 775.8267822265625
+            }
+          },
+          "1058": {
+            "from_node_id": "1049",
+            "to_node_id": "1057",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 805.0895385742188
+            },
+            "b2": {
+              "x": 420.57913773704513,
+              "y": 833.8360880868429
+            }
+          }
+        }
+      },
+      "1059": {
+        "name": "5,10-methylenetetrahydrofolate reductase (Ferredoxin) Electron bifurcating",
+        "bigg_id": "MTHFR5",
+        "reversibility": false,
+        "label_x": 226.3327975710472,
+        "label_y": 1031.9071044921875,
+        "gene_reaction_rule": "Q6H37_RS27275 or Q6H37_RS27280 or metF",
+        "genes": [
+          {
+            "bigg_id": "Q6H37_RS27275",
+            "name": "G_Q6H37_RS27275"
+          },
+          {
+            "bigg_id": "Q6H37_RS27280",
+            "name": "G_Q6H37_RS27280"
+          },
+          {
+            "bigg_id": "metF",
+            "name": "G_metF"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "5mthf_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "fdxo_42_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "fdxr_42_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "h_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "mlthf_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "nad_c",
+            "coefficient": 2
+          },
+          {
+            "bigg_id": "nadh_c",
+            "coefficient": -2
+          }
+        ],
+        "segments": {
+          "1063": {
+            "from_node_id": "1060",
+            "to_node_id": "1061",
+            "b1": null,
+            "b2": null
+          },
+          "1064": {
+            "from_node_id": "1061",
+            "to_node_id": "1062",
+            "b1": null,
+            "b2": null
+          },
+          "1065": {
+            "from_node_id": "1053",
+            "to_node_id": "1060",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 930
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 974.335205078125
+            }
+          },
+          "1067": {
+            "from_node_id": "1062",
+            "to_node_id": "1066",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 1061.0690307617188
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 1114.4359130859375
+            }
+          },
+          "1069": {
+            "from_node_id": "1068",
+            "to_node_id": "1060",
+            "b1": {
+              "x": 429.26944145170114,
+              "y": 951.1064975219881
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 992.335205078125
+            }
+          },
+          "1073": {
+            "from_node_id": "1072",
+            "to_node_id": "1060",
+            "b1": {
+              "x": 429.01415034757156,
+              "y": 974.0774124288837
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 1016.335205078125
+            }
+          },
+          "1075": {
+            "from_node_id": "1062",
+            "to_node_id": "1074",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 1019.0690307617188
+            },
+            "b2": {
+              "x": 429.9501657568426,
+              "y": 1044.0812947950737
+            }
+          },
+          "1077": {
+            "from_node_id": "1062",
+            "to_node_id": "1076",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 1043.0690307617188
+            },
+            "b2": {
+              "x": 430.95876085108966,
+              "y": 1068.462158203125
+            }
+          }
+        }
+      },
+      "1078": {
+        "name": "Methyltetrahydrofolate:corrinoid/iron-sulfur protein methyltransferase (MeTr)",
+        "bigg_id": "METR",
+        "reversibility": false,
+        "label_x": 256.58896212182844,
+        "label_y": 1274.446533203125,
+        "gene_reaction_rule": "acsE",
+        "genes": [
+          {
+            "bigg_id": "acsE",
+            "name": "G_acsE"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "5mthf_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "cfesp_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "mecfsp_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "thf_c",
+            "coefficient": 1
+          }
+        ],
+        "segments": {
+          "1082": {
+            "from_node_id": "1079",
+            "to_node_id": "1080",
+            "b1": null,
+            "b2": null
+          },
+          "1083": {
+            "from_node_id": "1080",
+            "to_node_id": "1081",
+            "b1": null,
+            "b2": null
+          },
+          "1084": {
+            "from_node_id": "1066",
+            "to_node_id": "1079",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 1174.4359130859375
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 1206.1268310546875
+            }
+          },
+          "1086": {
+            "from_node_id": "1081",
+            "to_node_id": "1085",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 1301.8924560546875
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 1357.2834676106772
+            }
+          },
+          "1088": {
+            "from_node_id": "1087",
+            "to_node_id": "1079",
+            "b1": {
+              "x": 425.9273396335734,
+              "y": 1211.2129257804968
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 1227.1268310546875
+            }
+          },
+          "1090": {
+            "from_node_id": "1081",
+            "to_node_id": "1089",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 1262.8924560546875
+            },
+            "b2": {
+              "x": 433.41472536197614,
+              "y": 1287.5537074183826
+            }
+          }
+        }
+      },
+      "1109": {
+        "name": "Acetyl-CoA synthase (WL pathway, forward)",
+        "bigg_id": "ACS_WL_FWD",
+        "reversibility": false,
+        "label_x": 479.669921875,
+        "label_y": 1480.1763916015625,
+        "gene_reaction_rule": "Q6H37_RS27245 or Q6H37_RS27255 or Q6H37_RS27260 or acsD or acsC or acsB",
+        "genes": [
+          {
+            "bigg_id": "acsB",
+            "name": "acsB"
+          },
+          {
+            "bigg_id": "acsC",
+            "name": "acsC"
+          },
+          {
+            "bigg_id": "Q6H37_RS27255",
+            "name": "Q6H37_RS27255"
+          },
+          {
+            "bigg_id": "Q6H37_RS27260",
+            "name": "Q6H37_RS27260"
+          },
+          {
+            "bigg_id": "acsD",
+            "name": "G_acsD"
+          },
+          {
+            "bigg_id": "Q6H37_RS27245",
+            "name": "Q6H37_RS27245"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "accoa_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "cfesp_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "co_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "coa_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "h_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "mecfsp_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "1115": {
+            "from_node_id": "1085",
+            "to_node_id": "1110",
+            "b1": {
+              "x": 472.2624850710473,
+              "y": 1387.2834676106772
+            },
+            "b2": {
+              "x": 612.2828572591146,
+              "y": 1387.2834676106772
+            }
+          },
+          "1116": {
+            "from_node_id": "1099",
+            "to_node_id": "1110",
+            "b1": {
+              "x": 877.7842504882813,
+              "y": 1387.2834676106772
+            },
+            "b2": {
+              "x": 762.2828572591147,
+              "y": 1387.2834676106772
+            }
+          },
+          "1118": {
+            "from_node_id": "1112",
+            "to_node_id": "1117",
+            "b1": {
+              "x": 684.2828572591146,
+              "y": 1457.2834676106772
+            },
+            "b2": {
+              "x": 684.2828572591146,
+              "y": 1513.326904296875
+            }
+          }
+        }
+      },
+      "1111": {
+        "name": "Formate Dehydrogenase(Ferredoxin dependent)",
+        "bigg_id": "FDH7",
+        "reversibility": false,
+        "label_x": 267.45329622827376,
+        "label_y": 201.1880760192871,
+        "gene_reaction_rule": "CLJS66_01050 or fdhD or Q6H37_RS13865 or Q6H37_RS10970 or Q6H37_RS15725 or fdhF",
+        "genes": [
+          {
+            "name": "G_CLJS66_01050",
+            "notes": {
+              "SBOTerm": "SBO:0000243"
+            },
+            "annotation": {
+              "goa": "Q180G2",
+              "interpro": [
+                "IPR006478",
+                "IPR006655",
+                "IPR006656",
+                "IPR006657",
+                "IPR006963",
+                "IPR009010"
+              ],
+              "sbo": "SBO:0000243",
+              "uniprot": "Q180G2"
+            },
+            "bigg_id": "CLJS66_01050"
+          },
+          {
+            "name": "G_fdhD",
+            "bigg_id": "fdhD"
+          },
+          {
+            "name": "G_Q6H37_RS13865",
+            "bigg_id": "Q6H37_RS13865"
+          },
+          {
+            "name": "G_Q6H37_RS10970",
+            "bigg_id": "Q6H37_RS10970"
+          },
+          {
+            "name": "G_Q6H37_RS15725",
+            "bigg_id": "Q6H37_RS15725"
+          },
+          {
+            "name": "G_fdhF",
+            "bigg_id": "fdhF"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "co2_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "fdxo_42_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "fdxr_42_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "for_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "h_c",
+            "coefficient": -1
+          }
+        ],
+        "segments": {
+          "1132": {
+            "from_node_id": "1133",
+            "to_node_id": "1134",
+            "b1": null,
+            "b2": null
+          },
+          "1133": {
+            "from_node_id": "1135",
+            "to_node_id": "1134",
+            "b1": null,
+            "b2": null
+          },
+          "1134": {
+            "from_node_id": "1133",
+            "to_node_id": "1132",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 173.48659135768196
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 154.65872977674007
+            }
+          },
+          "1135": {
+            "from_node_id": "1135",
+            "to_node_id": "1136",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 209.55053329467773
+            },
+            "b2": {
+              "x": 401.75873814902343,
+              "y": 226.33432154182884
+            }
+          },
+          "1136": {
+            "from_node_id": "1133",
+            "to_node_id": "1137",
+            "b1": {
+              "x": 400.31795469697147,
+              "y": 169.4865942658867
+            },
+            "b2": {
+              "x": 395.1277012458304,
+              "y": 148.1397991313724
+            }
+          },
+          "1137": {
+            "from_node_id": "1135",
+            "to_node_id": "1138",
+            "b1": {
+              "x": 400.2624850710472,
+              "y": 205.55053329467773
+            },
+            "b2": {
+              "x": 400.2624850710472,
+              "y": 243.48651504516602
+            }
+          }
+        }
+      },
+      "1113": {
+        "name": "Carbon monoxide dehydrogenase / acetyl-CoA synthase 2",
+        "bigg_id": "CODH4",
+        "reversibility": false,
+        "label_x": 817.5623876953125,
+        "label_y": 696.2755737304688,
+        "gene_reaction_rule": "Q6H37_RS14350 or Q6H37_RS14355 or cooS",
+        "genes": [
+          {
+            "name": "G_Q6H37_RS14350",
+            "bigg_id": "Q6H37_RS14350"
+          },
+          {
+            "name": "G_Q6H37_RS14355",
+            "bigg_id": "Q6H37_RS14355"
+          },
+          {
+            "name": "G_cooS",
+            "bigg_id": "cooS"
+          }
+        ],
+        "metabolites": [
+          {
+            "bigg_id": "co2_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "co_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "fdxo_42_c",
+            "coefficient": 1
+          },
+          {
+            "bigg_id": "fdxr_42_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "h2o_c",
+            "coefficient": -1
+          },
+          {
+            "bigg_id": "h_c",
+            "coefficient": 2
+          }
+        ],
+        "segments": {
+          "1146": {
+            "from_node_id": "1149",
+            "to_node_id": "1150",
+            "b1": null,
+            "b2": null
+          },
+          "1147": {
+            "from_node_id": "1151",
+            "to_node_id": "1150",
+            "b1": null,
+            "b2": null
+          },
+          "1148": {
+            "from_node_id": "1151",
+            "to_node_id": "1152",
+            "b1": {
+              "x": 955.7842504882813,
+              "y": 599.8519287109375
+            },
+            "b2": {
+              "x": 955.7842504882813,
+              "y": 154.65872977674007
+            }
+          },
+          "1149": {
+            "from_node_id": "1149",
+            "to_node_id": "1099",
+            "b1": {
+              "x": 955.7842504882813,
+              "y": 723.8519287109375
+            },
+            "b2": {
+              "x": 955.7842504882813,
+              "y": 1347.4553833007812
+            }
+          },
+          "1150": {
+            "from_node_id": "1149",
+            "to_node_id": "1153",
+            "b1": {
+              "x": 955.7842504882813,
+              "y": 727.8519287109375
+            },
+            "b2": {
+              "x": 977.0048282728194,
+              "y": 769.4305021392779
+            }
+          },
+          "1151": {
+            "from_node_id": "1151",
+            "to_node_id": "1154",
+            "b1": {
+              "x": 955.7842504882813,
+              "y": 595.8519287109375
+            },
+            "b2": {
+              "x": 966.8763976536177,
+              "y": 538.7841342220338
+            }
+          }
+        }
+      }
+    },
+    "nodes": {
+      "1017": {
+        "node_type": "multimarker",
+        "x": 488.9133783456749,
+        "y": 352.09973336590906
+      },
+      "1019": {
+        "node_type": "multimarker",
+        "x": 400.2624850710472,
+        "y": 336.1097106933594
+      },
+      "1023": {
+        "node_type": "metabolite",
+        "x": 400.2624850710472,
+        "y": 505.85255432128906,
+        "bigg_id": "10fthf_c",
+        "name": "Formyl-THF",
+        "label_x": 427.8491244753442,
+        "label_y": 512.9476470947266,
+        "node_is_primary": true
+      },
+      "1025": {
+        "node_type": "metabolite",
+        "x": 430.3223377373814,
+        "y": 404.06998073552046,
+        "bigg_id": "atp_c",
+        "name": "ATP",
+        "label_x": 418.2056080010533,
+        "label_y": 436.11059963200483,
+        "node_is_primary": false
+      },
+      "1027": {
+        "node_type": "metabolite",
+        "x": 430.94922462463387,
+        "y": 373.6635055541992,
+        "bigg_id": "thf_c",
+        "name": "THF",
+        "label_x": 418.00159278869637,
+        "label_y": 355.8130416870117,
+        "node_is_primary": false
+      },
+      "1034": {
+        "node_type": "multimarker",
+        "x": 400.2624850710472,
+        "y": 611.705078125
+      },
+      "1036": {
+        "node_type": "multimarker",
+        "x": 400.2624850710472,
+        "y": 594.1474609375
+      },
+      "1040": {
+        "node_type": "metabolite",
+        "x": 400.2624850710472,
+        "y": 700,
+        "bigg_id": "methf_c",
+        "name": "Methenyl-THF",
+        "label_x": 431.10052828393793,
+        "label_y": 706.0112915039062,
+        "node_is_primary": true
+      },
+      "1044": {
+        "node_type": "metabolite",
+        "x": 470.9878751383642,
+        "y": 617.438026868632,
+        "bigg_id": "h2o_c",
+        "name": "H2O",
+        "label_x": 476.89845863445703,
+        "label_y": 603.9408344858196,
+        "node_is_primary": false
+      },
+      "1047": {
+        "node_type": "multimarker",
+        "x": 400.2624850710472,
+        "y": 784.8267822265625
+      },
+      "1048": {
+        "node_type": "midmarker",
+        "x": 400.2624850710472,
+        "y": 798.9161987304688
+      },
+      "1049": {
+        "node_type": "multimarker",
+        "x": 400.2624850710472,
+        "y": 814.0895385742188
+      },
+      "1053": {
+        "node_type": "metabolite",
+        "x": 400.2624850710472,
+        "y": 900,
+        "bigg_id": "mlthf_c",
+        "name": "Methylene-THF",
+        "label_x": 429.2941928347192,
+        "label_y": 902.037353515625,
+        "node_is_primary": true
+      },
+      "1055": {
+        "node_type": "metabolite",
+        "x": 455.2944062261088,
+        "y": 756.3835527660974,
+        "bigg_id": "nadph_c",
+        "name": "NAD(P)H",
+        "label_x": 462.2887909917338,
+        "label_y": 742.8863603832849,
+        "node_is_primary": false
+      },
+      "1057": {
+        "node_type": "metabolite",
+        "x": 457.6778798844223,
+        "y": 833.0094496638037,
+        "bigg_id": "nadp_c",
+        "name": "NAD(P)+",
+        "label_x": 467.9236074234848,
+        "label_y": 821.6798598200537,
+        "node_is_primary": false
+      },
+      "1060": {
+        "node_type": "multimarker",
+        "x": 400.2624850710472,
+        "y": 1004.335205078125
+      },
+      "1061": {
+        "node_type": "midmarker",
+        "x": 400.2624850710472,
+        "y": 1017.3408813476562
+      },
+      "1062": {
+        "node_type": "multimarker",
+        "x": 400.2624850710472,
+        "y": 1031.0690307617188
+      },
+      "1066": {
+        "node_type": "metabolite",
+        "x": 400.2624850710472,
+        "y": 1144.4359130859375,
+        "bigg_id": "5mthf_c",
+        "name": "Methyl-THF",
+        "label_x": 428.93292574487543,
+        "label_y": 1152.61474609375,
+        "node_is_primary": true
+      },
+      "1068": {
+        "node_type": "metabolite",
+        "x": 466.95876085108966,
+        "y": 946.6888959995663,
+        "bigg_id": "fdxo_42_c",
+        "name": "Fd_ox",
+        "label_x": 478.2883506948399,
+        "label_y": 938.9719770542538,
+        "node_is_primary": false
+      },
+      "1072": {
+        "node_type": "metabolite",
+        "x": 466.95876085108966,
+        "y": 974.5318722580589,
+        "bigg_id": "nadh_c",
+        "name": "NADH",
+        "label_x": 480.4559837514802,
+        "label_y": 968.2601437424339,
+        "node_is_primary": false
+      },
+      "1074": {
+        "node_type": "metabolite",
+        "x": 466.95876085108966,
+        "y": 1052.4696134078843,
+        "bigg_id": "fdxr_42_c",
+        "name": "Fd_red",
+        "label_x": 477.56578599757404,
+        "label_y": 1046.9204190719468,
+        "node_is_primary": false
+      },
+      "1076": {
+        "node_type": "metabolite",
+        "x": 466.95876085108966,
+        "y": 1080.462158203125,
+        "bigg_id": "nad_c",
+        "name": "NAD+",
+        "label_x": 481.1783958608553,
+        "label_y": 1076.35791015625,
+        "node_is_primary": false
+      },
+      "1079": {
+        "node_type": "multimarker",
+        "x": 400.2624850710472,
+        "y": 1236.1268310546875
+      },
+      "1080": {
+        "node_type": "midmarker",
+        "x": 400.2624850710472,
+        "y": 1254.912841796875
+      },
+      "1081": {
+        "node_type": "multimarker",
+        "x": 400.2624850710472,
+        "y": 1271.8924560546875
+      },
+      "1085": {
+        "node_type": "metabolite",
+        "x": 400.2624850710472,
+        "y": 1387.2834676106772,
+        "bigg_id": "mecfsp_c",
+        "name": "Methyl-CoFeSP",
+        "label_x": 424.32675509057856,
+        "label_y": 1371.9798787434897,
+        "node_is_primary": true
+      },
+      "1087": {
+        "node_type": "metabolite",
+        "x": 462.7860571294352,
+        "y": 1206.9193323483842,
+        "bigg_id": "cfesp_c",
+        "name": "CoFeSP",
+        "label_x": 482.78605712943545,
+        "label_y": 1186.9193323483842,
+        "node_is_primary": false
+      },
+      "1089": {
+        "node_type": "metabolite",
+        "x": 465.19522890337817,
+        "y": 1306.7109408996273,
+        "bigg_id": "thf_c",
+        "name": "THF",
+        "label_x": 485.1952289033784,
+        "label_y": 1286.7109408996273,
+        "node_is_primary": false
+      },
+      "1099": {
+        "node_type": "metabolite",
+        "x": 955.7842504882813,
+        "y": 1387.2834676106772,
+        "bigg_id": "co_c",
+        "name": "CO",
+        "label_x": 975.7842504882813,
+        "label_y": 1367.2834676106772,
+        "node_is_primary": true
+      },
+      "1110": {
+        "node_type": "multimarker",
+        "x": 684.2828572591146,
+        "y": 1387.2834676106772
+      },
+      "1112": {
+        "node_type": "multimarker",
+        "x": 684.2828572591146,
+        "y": 1387.2834676106772
+      },
+      "1117": {
+        "node_type": "metabolite",
+        "x": 684.2828572591146,
+        "y": 1583.326904296875,
+        "bigg_id": "accoa_c",
+        "name": "Acetyl-CoA",
+        "label_x": 704.2828572591147,
+        "label_y": 1563.326904296875,
+        "node_is_primary": true
+      },
+      "1132": {
+        "node_type": "metabolite",
+        "x": 400.2624850710472,
+        "y": 95.90872977674007,
+        "bigg_id": "co2_c",
+        "name": "CO2 CO2",
+        "label_x": 427.7999911745628,
+        "label_y": 101.45105765759945,
+        "node_is_primary": true
+      },
+      "1133": {
+        "node_type": "multimarker",
+        "x": 400.2624850710472,
+        "y": 215.4865608215332
+      },
+      "1134": {
+        "node_type": "midmarker",
+        "x": 400.2624850710472,
+        "y": 188.78203964233398
+      },
+      "1135": {
+        "node_type": "multimarker",
+        "x": 400.2624850710472,
+        "y": 163.55053329467773
+      },
+      "1136": {
+        "node_type": "metabolite",
+        "x": 471.64327390897824,
+        "y": 236.29495212506282,
+        "bigg_id": "fdxo_42_c",
+        "name": "Ferredoxin (oxidized form 4:2)",
+        "label_x": 480.8335204910095,
+        "label_y": 224.02658054303146,
+        "node_is_primary": false
+      },
+      "1137": {
+        "node_type": "metabolite",
+        "x": 464.9288219181449,
+        "y": 137.6105041460005,
+        "bigg_id": "fdxr_42_c",
+        "name": "Ferredoxin (reduced form 4:2)",
+        "label_x": 477.7612193790824,
+        "label_y": 130.02387427844678,
+        "node_is_primary": false
+      },
+      "1138": {
+        "node_type": "metabolite",
+        "x": 400.2624850710472,
+        "y": 302.236515045166,
+        "bigg_id": "for_c",
+        "name": "Formate",
+        "label_x": 427.67673067651594,
+        "label_y": 308.3824043273926,
+        "node_is_primary": true
+      },
+      "1149": {
+        "node_type": "multimarker",
+        "x": 955.7842504882813,
+        "y": 681.8519287109375
+      },
+      "1150": {
+        "node_type": "midmarker",
+        "x": 955.7842504882813,
+        "y": 661.8519287109375
+      },
+      "1151": {
+        "node_type": "multimarker",
+        "x": 955.7842504882813,
+        "y": 641.8519287109375
+      },
+      "1152": {
+        "node_type": "metabolite",
+        "x": 955.7842504882813,
+        "y": 95.90872977674007,
+        "bigg_id": "co2_c",
+        "name": "CO2 CO2",
+        "label_x": 980.7842504882813,
+        "label_y": 95.90872977674007,
+        "node_is_primary": true
+      },
+      "1153": {
+        "node_type": "metabolite",
+        "x": 1036.5865944879279,
+        "y": 807.2864875932062,
+        "bigg_id": "fdxo_42_c",
+        "name": "Ferredoxin (oxidized form 4:2)",
+        "label_x": 1062.4661721246464,
+        "label_y": 806.3915901322687,
+        "node_is_primary": false
+      },
+      "1154": {
+        "node_type": "metabolite",
+        "x": 1036.5865944879279,
+        "y": 527.6687863947459,
+        "bigg_id": "fdxr_42_c",
+        "name": "Ferredoxin (reduced form 4:2)",
+        "label_x": 1066.6412209527716,
+        "label_y": 525.1039060236526,
+        "node_is_primary": false
+      }
+    },
+    "text_labels": {
+      "1127": {
+        "x": 90.08447265625,
+        "y": -86.61641311645508,
+        "text": "Wood-Ljungdahl Pathway"
+      }
+    },
+    "canvas": {
+      "x": 13.948973536491394,
+      "y": -211.45024871826172,
+      "width": 1371.3505870103836,
+      "height": 1961.4502487182617
+    }
+  }
+]

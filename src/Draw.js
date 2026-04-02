@@ -844,10 +844,7 @@ function create_text_label (enter_selection) {
 }
 
 function update_text_label (update_selection) {
-  const mousedown = this.behavior.textLabelMousedown
-  const click = this.behavior.textLabelClick
-  const turnOffDrag = this.behavior.turnOffDrag
-  const drag = this.behavior.selectableDrag
+  var behavior = this.behavior
 
   update_selection
     .select('.label')
@@ -855,10 +852,22 @@ function update_text_label (update_selection) {
     .attr('transform', function (d) {
       return 'translate(' + d.x + ',' + d.y + ')'
     })
-    .on('mousedown', mousedown)
-    .on('click', click)
-    .call(turnOffDrag)
-    .call(drag)
+    .style('font-size', function (d) { return (d.font_size || 50) + 'px' })
+    .style('font-family', function (d) { return d.font_family || 'sans-serif' })
+    .style('font-weight', function (d) { return d.font_weight || 'bold' })
+    .style('font-style', function (d) { return d.font_style || 'italic' })
+    .on('mousedown', function (d) {
+      if (behavior.textLabelMousedown) {
+        behavior.textLabelMousedown.call(this, d)
+      }
+    })
+    .on('click', function (d) {
+      if (behavior.textLabelClick) {
+        behavior.textLabelClick.call(this, d)
+      }
+    })
+    .call(behavior.turnOffDrag.bind(behavior))
+    .call(behavior.selectableDrag)
 
   this.callback_manager.run('update_text_label', this, update_selection)
 }

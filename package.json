@@ -79,6 +79,7 @@
     "clean": "rm -r dist/*; rm -r py/escher/static/*",
     "test": "./node_modules/.bin/mochapack --webpack-config webpack.test.js \"src/tests/*.js\"",
     "copy": "cp dist/escher.min.js dist/index.js && cp package.json py/escher/static/ && cp jupyter/notebook-extension.js py/escher/static/extension.js && cp dist/escher.min.* py/escher/static/ && mkdir -p py/escher/static/jsonschema; cp jsonschema/* py/escher/static/jsonschema/",
+    "postinstall": "node scripts/patch-d3-brush.js",
     "coverage": "./node_modules/.bin/cross-env NODE_ENV=coverage ./node_modules/.bin/nyc --reporter=text-lcov npm run test | ./node_modules/.bin/coveralls"
   },
   "nyc": {
