@@ -30,6 +30,10 @@ export default class DirectionArrow {
 
     this.isVisible = false
     this.show()
+
+    // Track pressed arrow keys for diagonal detection
+    this._pressedKeys = new Set()
+    this._setupDiagonalKeys()
   }
 
   /**
@@ -97,6 +101,50 @@ export default class DirectionArrow {
 
   up () {
     this.setRotation(270)
+  }
+
+  /**
+   * Set up keydown/keyup listeners for diagonal arrow key combinations.
+   * When two arrow keys are held simultaneously, rotate to the diagonal.
+   */
+  _setupDiagonalKeys () {
+    const ARROW_KEYS = new Set(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'])
+
+    // Map of two-key combos to diagonal rotations
+    const DIAGONALS = {
+      'ArrowUp+ArrowRight': 315,    // up-right
+      'ArrowRight+ArrowDown': 45,   // down-right
+      'ArrowDown+ArrowLeft': 135,   // down-left
+      'ArrowLeft+ArrowUp': 225      // up-left
+    }
+
+    const getComboRotation = () => {
+      if (this._pressedKeys.size !== 2) return null
+      const sorted = Array.from(this._pressedKeys).sort()
+      const key = sorted.join('+')
+      return DIAGONALS[key] !== undefined ? DIAGONALS[key] : null
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (!ARROW_KEYS.has(e.key)) return
+      this._pressedKeys.add(e.key)
+
+      const diag = getComboRotation()
+      if (diag !== null) {
+        e.preventDefault()
+        this.setRotation(diag)
+      }
+    })
+
+    document.addEventListener('keyup', (e) => {
+      if (!ARROW_KEYS.has(e.key)) return
+      this._pressedKeys.delete(e.key)
+    })
+
+    // Clear pressed keys when window loses focus
+    window.addEventListener('blur', () => {
+      this._pressedKeys.clear()
+    })
   }
 
   _setupDrag () {
